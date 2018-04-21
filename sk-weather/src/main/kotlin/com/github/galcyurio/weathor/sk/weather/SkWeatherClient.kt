@@ -1,6 +1,8 @@
 package com.github.galcyurio.weathor.sk.weather
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.github.galcyurio.weathor.sk.weather.data.RawSkWeatherStatus
+import com.github.galcyurio.weathor.sk.weather.data.SkWeatherStatus
 import okhttp3.*
 import java.io.IOException
 
@@ -45,12 +47,10 @@ object SkWeatherClient {
     fun callAsync() {
         client.newCall(request).enqueue(object : Callback {
             override fun onResponse(call: Call, response: Response) {
-                if(response.isSuccessful) {
+                if (response.isSuccessful) {
                     val responseBody = response.body()!!
-                    val rawBody = responseBody.string()
-
-
-                    TODO()
+                    val raw = objectMapper.readValue(responseBody.string(), RawSkWeatherStatus::class.java)
+                    SkWeatherStatus.fromRaw(raw)
                 }
             }
 

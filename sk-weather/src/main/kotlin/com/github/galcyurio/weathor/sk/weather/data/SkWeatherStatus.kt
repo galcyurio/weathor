@@ -10,6 +10,17 @@ data class SkWeatherStatus(
     val modify: Modify,
     val modifyDescription: String
 ) {
+    companion object {
+        fun fromRaw(raw: RawSkWeatherStatus): SkWeatherStatus = SkWeatherStatus(
+            status = Status.values().asSequence()
+                .find { it.code == raw.weatherStatusCode }!!,
+            statusDescription = raw.weatherStatusDescription,
+            modify = Modify.values().asSequence()
+                .find { it.code == raw.weatherModifyCode }!!,
+            modifyDescription = raw.weatherModifyDescription
+        )
+    }
+
     /**
      * 상태 (명사)
      */
