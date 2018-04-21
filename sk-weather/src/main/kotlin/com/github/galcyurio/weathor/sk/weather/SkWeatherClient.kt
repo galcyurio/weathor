@@ -1,5 +1,8 @@
 package com.github.galcyurio.weathor.sk.weather
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.github.galcyurio.weathor.sk.weather.data.RawSkWeatherStatus
+import com.github.galcyurio.weathor.sk.weather.data.SkWeatherStatus
 import okhttp3.*
 import java.io.IOException
 
@@ -16,11 +19,12 @@ object SkWeatherClient {
     /**
      * SK planet 서비스의 Location API 중 [Weather](https://developers.sktelecom.com/content/sktApi/view/?svcId=10073)의 `baseUrl`이다.
      */
-    val WEATHER_BASE_URL = "https://apis.sktelecom.com/v1/weather/status"
-    lateinit var apiKey: String
+    private const val WEATHER_BASE_URL = "https://apis.sktelecom.com/v1/weather/status"
+    private lateinit var apiKey: String
 
-    val clinet = OkHttpClient()
-    val request = Request.Builder()
+    private val objectMapper = ObjectMapper()
+    private val client = OkHttpClient()
+    private val request = Request.Builder()
         .get()
         .addHeader("TDCProjectKey", apiKey)
         .url(WEATHER_BASE_URL)
@@ -34,18 +38,19 @@ object SkWeatherClient {
      * 동기적으로 호출한다.
      */
     fun call() {
-        val response = clinet.newCall(request).execute()
-
+        val response = client.newCall(request).execute()
     }
 
     /**
      * 비동기적으로 호출한다
      */
     fun callAsync() {
-        clinet.newCall(request).enqueue(object : Callback {
+        client.newCall(request).enqueue(object : Callback {
             override fun onResponse(call: Call, response: Response) {
-                if(response.isSuccessful) {
-                    TODO()
+                if (response.isSuccessful) {
+                    val responseBody = response.body()!!
+                    val raw = objectMapper.readValue(responseBody.string(), RawSkWeatherStatus::class.java)
+                    SkWeatherStatus.fromRaw(raw)
                 }
             }
 
