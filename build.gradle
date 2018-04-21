@@ -4,7 +4,7 @@ ext.config = [
 ]
 
 ext.versions = [
-        kotlin   : "1.2.31",
+        kotlin   : "1.2.40",
 
         okhttp  : "3.10.0",
         retrofit: "2.4.0",
