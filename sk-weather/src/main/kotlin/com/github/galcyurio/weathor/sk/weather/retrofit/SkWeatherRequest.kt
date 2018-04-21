@@ -1,0 +1,14 @@
+package com.github.galcyurio.weathor.sk.weather.retrofit
+
+import com.github.galcyurio.weathor.sk.weather.data.RawSkWeatherStatus
+import retrofit2.Call
+import retrofit2.http.GET
+
+/**
+ * @author galcyurio
+ */
+interface SkWeatherRequest {
+
+    @GET
+    fun weatherStatus() : Call<RawSkWeatherStatus>
+}

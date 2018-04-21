@@ -1,5 +1,11 @@
 package com.github.galcyurio.weathor.sk.weather
 
+import com.github.galcyurio.weathor.sk.weather.data.RawSkWeatherStatus
+import com.github.galcyurio.weathor.sk.weather.data.SkWeatherStatus
+import com.github.galcyurio.weathor.sk.weather.retrofit.SkWeatherRequest
+import okhttp3.OkHttpClient
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 
@@ -19,27 +25,39 @@ object SkWeatherClient {
     private const val WEATHER_BASE_URL = "https://apis.sktelecom.com/v1/weather/status"
     private lateinit var apiKey: String
 
-    private val retrofit = Retrofit.Builder()
-        .addConverterFactory(JacksonConverterFactory.create())
-        .baseUrl(WEATHER_BASE_URL)
-        .build()
+    private lateinit var request: SkWeatherRequest
 
     fun init(apiKey: String) {
         this.apiKey = apiKey
+
+        request = Retrofit.Builder()
+            .addConverterFactory(JacksonConverterFactory.create())
+            .baseUrl(WEATHER_BASE_URL)
+            .client(OkHttpClient.Builder()
+                .addInterceptor { chain ->
+                    chain.proceed(chain.request().newBuilder()
+                        .addHeader("TDCProjectKey", this.apiKey)
+                        .build())
+                }
+                .build()
+            )
+            .build()
+            .create(SkWeatherRequest::class.java)
     }
 
     /**
      * 동기적으로 호출한다.
      */
-    fun call() {
-
+    fun call(): Response<RawSkWeatherStatus> {
+        return request.weatherStatus().execute()
     }
 
     /**
      * 비동기적으로 호출한다
      */
-    fun callAsync() {
-
+    fun callAsync(callback: Callback<SkWeatherStatus>) {
+        TODO("Jackson Deserializer 만들기")
+        // TODO: Jackson Deserializer를 만들어 본 뒤에 Raw 객체를 쓸 것인지 결정할 것
     }
 
 }
