@@ -1,6 +1,7 @@
 package com.github.galcyurio.weathor.sk.weather.data
 
 /**
+ * 특정 위치, 시간 기준 날씨 Context
  * @author galcyurio
  */
 data class SkWeatherStatus(
