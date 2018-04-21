@@ -6,6 +6,7 @@ ext.config = [
 ext.versions = [
         kotlin   : "1.2.31",
 
+        jackson: "2.9.5",
         okhttp  : "3.10.0",
         retrofit: "2.4.0",
 
@@ -15,6 +16,8 @@ ext.versions = [
 
 ext.deps = [
         kotlinStdLib             : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}",
+
+        jackson: "com.fasterxml.jackson.core:jackson-databind:${versions.jackson}",
 
         okhttp                  : "com.squareup.okhttp3:okhttp:${versions.okhttp}",
         retrofit                : "com.squareup.retrofit2:retrofit:${versions.retrofit}",

@@ -19,6 +19,10 @@ repositories {
 dependencies {
     compile deps.kotlinStdLib
     compile deps.okhttp
+    compile deps.jackson
+
+    testCompile deps.junit
+    testCompile deps.assertj
 }
 
 compileKotlin {
