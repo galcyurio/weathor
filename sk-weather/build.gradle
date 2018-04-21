@@ -19,7 +19,7 @@ repositories {
 dependencies {
     compile deps.kotlinStdLib
     compile deps.retrofit
-    compile deps.jackson
+    compile deps.retrofitJacksonConverter
 
     testCompile deps.junit
     testCompile deps.assertj
