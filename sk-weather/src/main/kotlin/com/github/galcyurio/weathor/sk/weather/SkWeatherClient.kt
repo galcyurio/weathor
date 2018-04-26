@@ -6,6 +6,7 @@ import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.github.galcyurio.weathor.sk.weather.data.SkWeatherStatus
 import com.github.galcyurio.weathor.sk.weather.retrofit.SkWeatherRequest
 import com.github.galcyurio.weathor.sk.weather.support.SkWeatherStatusDeserializer
+import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,51 +22,54 @@ import retrofit2.converter.jackson.JacksonConverterFactory
  *
  * @author galcyurio
  */
-object SkWeatherClient {
-    /**
-     * SK planet 서비스의 Location API 중 [Weather](https://developers.sktelecom.com/content/sktApi/view/?svcId=10073)의 `baseUrl`이다.
-     */
-    private const val WEATHER_BASE_URL = "https://apis.sktelecom.com/v1/weather/status"
-    private lateinit var apiKey: String
-
-    private lateinit var request: SkWeatherRequest
-
-    fun init(apiKey: String) {
-        this.apiKey = apiKey
-
-        val objectMapper = ObjectMapper()
-            .registerKotlinModule()
-            .registerModule(SimpleModule()
-                .addDeserializer(SkWeatherStatus::class.java, SkWeatherStatusDeserializer()))
-
-        request = Retrofit.Builder()
-            .addConverterFactory(JacksonConverterFactory.create(objectMapper))
-            .baseUrl(WEATHER_BASE_URL)
-            .client(OkHttpClient.Builder()
-                .addInterceptor { chain ->
-                    chain.proceed(chain.request().newBuilder()
-                        .addHeader("TDCProjectKey", this.apiKey)
-                        .build())
-                }
-                .build()
-            )
-            .build()
-            .create(SkWeatherRequest::class.java)
+class SkWeatherClient private constructor(
+    private val retrofit: Retrofit
+) {
+    companion object {
+        /**
+         * SK planet 서비스의 Location API 중 [Weather](https://developers.sktelecom.com/content/sktApi/view/?svcId=10073)의 `baseUrl`이다.
+         */
+        private const val WEATHER_BASE_URL = "https://apis.sktelecom.com/v1/"
     }
+
+    private val request: SkWeatherRequest by lazy { retrofit.create(SkWeatherRequest::class.java) }
 
     /**
      * 동기적으로 호출한다.
      */
     fun call(): Response<SkWeatherStatus> {
-        TODO()
+        return request.weatherStatus().execute()
     }
 
     /**
      * 비동기적으로 호출한다
      */
     fun callAsync(callback: Callback<SkWeatherStatus>) {
-        TODO("Jackson Deserializer 만들기")
-        // TODO: Jackson Deserializer를 만들어 본 뒤에 Raw 객체를 쓸 것인지 결정할 것
+        request.weatherStatus().enqueue(callback)
     }
 
+    class Builder {
+        private var apiKey: String? = null
+        private var baseUrl: HttpUrl = HttpUrl.parse(WEATHER_BASE_URL)!!
+
+        fun build(): SkWeatherClient = SkWeatherClient(Retrofit.Builder()
+            .addConverterFactory(JacksonConverterFactory.create(ObjectMapper()
+                .registerKotlinModule()
+                .registerModule(SimpleModule()
+                    .addDeserializer(SkWeatherStatus::class.java, SkWeatherStatusDeserializer()))))
+            .baseUrl(baseUrl)
+            .client(OkHttpClient.Builder()
+                .addInterceptor { chain ->
+                    chain.proceed(chain.request().newBuilder()
+                        .addHeader("TDCProjectKey", apiKey!!)
+                        .build())
+                }
+                .build()
+            )
+            .build())
+
+        fun apiKey(apiKey: String): Builder = apply { this.apiKey = apiKey }
+
+        fun baseUrl(baseUrl: HttpUrl): Builder = apply { this.baseUrl = baseUrl }
+    }
 }

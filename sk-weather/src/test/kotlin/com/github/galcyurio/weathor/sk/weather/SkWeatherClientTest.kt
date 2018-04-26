@@ -10,14 +10,19 @@ import org.junit.Test
 import retrofit2.Call
 import retrofit2.Response
 import java.io.File
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 /**
  * @author galcyurio
  */
 class SkWeatherClientTest {
 
-    lateinit var server: MockWebServer
-    val json = File(this.javaClass.classLoader.getResource("mock/WeatherStatus.json").toURI()).readText()
+    private val json = File(this.javaClass.classLoader.getResource("mock/WeatherStatus.json").toURI()).readText()
+
+    private lateinit var server: MockWebServer
+    private lateinit var client: SkWeatherClient
+    private lateinit var lock: CountDownLatch
 
     @Before
     fun setUp() {
@@ -27,28 +32,33 @@ class SkWeatherClientTest {
             setBody(json)
         })
 
-        SkWeatherClient.init("TEST")
+        client = SkWeatherClient.Builder()
+            .apiKey("TEST")
+            .baseUrl(server.url(""))
+            .build()
+
+        lock = CountDownLatch(1)
     }
 
     @Test
     fun `동기적인 호출 후에 리턴값으로 VO class 반환`() {
-        val skWeatherStatus = SkWeatherClient.call().body()
-        assertThat(skWeatherStatus).isNotNull()
+        val skWeatherStatus = client.call().body()
 
+        assertThat(skWeatherStatus).hasNoNullFieldsOrProperties()
         server.close()
     }
 
     @Test
     fun `비동기적인 호출 후에 callback 함수로 VO class 간접적으로 반환`() {
-        server.takeRequest()
-
-        SkWeatherClient.callAsync(object : SkWeatherCallbackAdapter<SkWeatherStatus> {
+        client.callAsync(object : SkWeatherCallbackAdapter<SkWeatherStatus> {
             override fun onSuccess(call: Call<SkWeatherStatus>, response: Response<SkWeatherStatus>) {
                 val skWeatherStatus = response.body()
-                assertThat(skWeatherStatus).isNotNull()
+                assertThat(skWeatherStatus).hasNoNullFieldsOrProperties()
+                lock.countDown()
             }
         })
 
+        lock.await(2, TimeUnit.SECONDS)
         server.close()
     }
 }

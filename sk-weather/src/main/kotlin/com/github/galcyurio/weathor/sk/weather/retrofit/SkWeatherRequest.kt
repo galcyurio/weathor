@@ -9,6 +9,6 @@ import retrofit2.http.GET
  */
 interface SkWeatherRequest {
 
-    @GET
+    @GET("weather/status")
     fun weatherStatus() : Call<SkWeatherStatus>
 }
