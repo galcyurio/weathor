@@ -1,10 +1,17 @@
 package com.github.galcyurio.weathor.sk.weather
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.github.galcyurio.weathor.sk.weather.data.RawSkWeatherStatus
+import com.fasterxml.jackson.databind.module.SimpleModule
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.github.galcyurio.weathor.sk.weather.data.SkWeatherStatus
-import okhttp3.*
-import java.io.IOException
+import com.github.galcyurio.weathor.sk.weather.retrofit.SkWeatherRequest
+import com.github.galcyurio.weathor.sk.weather.support.SkWeatherStatusDeserializer
+import okhttp3.HttpUrl
+import okhttp3.OkHttpClient
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.jackson.JacksonConverterFactory
 
 /**
  * Weather API는 누적된 날씨 데이터와 문장형으로 전달되는 콘텐츠의
@@ -15,50 +22,56 @@ import java.io.IOException
  *
  * @author galcyurio
  */
-object SkWeatherClient {
-    /**
-     * SK planet 서비스의 Location API 중 [Weather](https://developers.sktelecom.com/content/sktApi/view/?svcId=10073)의 `baseUrl`이다.
-     */
-    private const val WEATHER_BASE_URL = "https://apis.sktelecom.com/v1/weather/status"
-    private lateinit var apiKey: String
-
-    private val objectMapper = ObjectMapper()
-    private val client = OkHttpClient()
-    private val request = Request.Builder()
-        .get()
-        .addHeader("TDCProjectKey", apiKey)
-        .url(WEATHER_BASE_URL)
-        .build()
-
-    fun init(apiKey: String) {
-        this.apiKey = apiKey
+class SkWeatherClient private constructor(
+    private val retrofit: Retrofit
+) {
+    companion object {
+        /**
+         * SK planet 서비스의 Location API 중 [Weather](https://developers.sktelecom.com/content/sktApi/view/?svcId=10073)의 `baseUrl`이다.
+         */
+        private const val WEATHER_BASE_URL = "https://apis.sktelecom.com/v1/"
     }
+
+    private val request: SkWeatherRequest by lazy { retrofit.create(SkWeatherRequest::class.java) }
 
     /**
      * 동기적으로 호출한다.
+     * @param latitude 위도
+     * @param longitude 경도
      */
-    fun call() {
-        val response = client.newCall(request).execute()
+    fun call(latitude: Double, longitude: Double): Response<SkWeatherStatus> {
+        return request.weatherStatus(latitude, longitude).execute()
     }
 
     /**
      * 비동기적으로 호출한다
      */
-    fun callAsync() {
-        client.newCall(request).enqueue(object : Callback {
-            override fun onResponse(call: Call, response: Response) {
-                if (response.isSuccessful) {
-                    val responseBody = response.body()!!
-                    val raw = objectMapper.readValue(responseBody.string(), RawSkWeatherStatus::class.java)
-                    SkWeatherStatus.fromRaw(raw)
-                }
-            }
-
-            override fun onFailure(call: Call, e: IOException) {
-                TODO("not implemented")
-            }
-
-        })
+    fun callAsync(latitude: Double, longitude: Double, callback: Callback<SkWeatherStatus>) {
+        request.weatherStatus(latitude, longitude).enqueue(callback)
     }
 
+    class Builder {
+        private var apiKey: String? = null
+        private var baseUrl: HttpUrl = HttpUrl.parse(WEATHER_BASE_URL)!!
+
+        fun build(): SkWeatherClient = SkWeatherClient(Retrofit.Builder()
+            .addConverterFactory(JacksonConverterFactory.create(ObjectMapper()
+                .registerKotlinModule()
+                .registerModule(SimpleModule()
+                    .addDeserializer(SkWeatherStatus::class.java, SkWeatherStatusDeserializer()))))
+            .baseUrl(baseUrl)
+            .client(OkHttpClient.Builder()
+                .addInterceptor { chain ->
+                    chain.proceed(chain.request().newBuilder()
+                        .addHeader("TDCProjectKey", apiKey!!)
+                        .build())
+                }
+                .build()
+            )
+            .build())
+
+        fun apiKey(apiKey: String): Builder = apply { this.apiKey = apiKey }
+
+        fun baseUrl(baseUrl: HttpUrl): Builder = apply { this.baseUrl = baseUrl }
+    }
 }

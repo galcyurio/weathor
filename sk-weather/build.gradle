@@ -18,11 +18,13 @@ repositories {
 
 dependencies {
     compile deps.kotlinStdLib
-    compile deps.okhttp
-    compile deps.jackson
+    compile deps.retrofit
+    compile deps.retrofitJacksonConverter
+    compile deps.jacksonModuleKotlin
 
     testCompile deps.junit
     testCompile deps.assertj
+    testCompile deps.okhttpMockWebServer
 }
 
 compileKotlin {
