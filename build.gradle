@@ -4,27 +4,28 @@ ext.config = [
 ]
 
 ext.versions = [
-        kotlin   : "1.2.40",
+        kotlin  : "1.2.40",
 
-        jackson: "2.9.5",
+        jackson : "2.9.5",
         okhttp  : "3.10.0",
         retrofit: "2.4.0",
 
-        junit    : "4.12",
-        assertj  : "3.9.0"
+        junit   : "4.12",
+        assertj : "3.9.0"
 ]
 
 ext.deps = [
-        kotlinStdLib             : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}",
+        kotlinStdLib            : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}",
 
-        jackson: "com.fasterxml.jackson.core:jackson-databind:${versions.jackson}",
+        jackson                 : "com.fasterxml.jackson.core:jackson-databind:${versions.jackson}",
+        jacksonModuleKotlin     : "com.fasterxml.jackson.module:jackson-module-kotlin:${versions.jackson}",
 
         okhttp                  : "com.squareup.okhttp3:okhttp:${versions.okhttp}",
         retrofit                : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
         retrofitJacksonConverter: "com.squareup.retrofit2:converter-jackson:${versions.retrofit}",
 
-        junit                    : "junit:junit:${versions.junit}",
-        assertj                  : "org.assertj:assertj-core:${versions.assertj}"
+        junit                   : "junit:junit:${versions.junit}",
+        assertj                 : "org.assertj:assertj-core:${versions.assertj}"
 ]
 
 group config.group

@@ -20,6 +20,7 @@ dependencies {
     compile deps.kotlinStdLib
     compile deps.retrofit
     compile deps.retrofitJacksonConverter
+    compile deps.jacksonModuleKotlin
 
     testCompile deps.junit
     testCompile deps.assertj

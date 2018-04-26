@@ -1,6 +1,6 @@
 package com.github.galcyurio.weathor.sk.weather.retrofit
 
-import com.github.galcyurio.weathor.sk.weather.data.RawSkWeatherStatus
+import com.github.galcyurio.weathor.sk.weather.data.SkWeatherStatus
 import retrofit2.Call
 import retrofit2.http.GET
 
@@ -10,5 +10,5 @@ import retrofit2.http.GET
 interface SkWeatherRequest {
 
     @GET
-    fun weatherStatus() : Call<RawSkWeatherStatus>
+    fun weatherStatus() : Call<SkWeatherStatus>
 }

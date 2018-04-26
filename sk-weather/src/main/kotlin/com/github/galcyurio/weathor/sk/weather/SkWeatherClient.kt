@@ -1,8 +1,11 @@
 package com.github.galcyurio.weathor.sk.weather
 
-import com.github.galcyurio.weathor.sk.weather.data.RawSkWeatherStatus
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.module.SimpleModule
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.github.galcyurio.weathor.sk.weather.data.SkWeatherStatus
 import com.github.galcyurio.weathor.sk.weather.retrofit.SkWeatherRequest
+import com.github.galcyurio.weathor.sk.weather.support.SkWeatherStatusDeserializer
 import okhttp3.OkHttpClient
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,8 +33,13 @@ object SkWeatherClient {
     fun init(apiKey: String) {
         this.apiKey = apiKey
 
+        val objectMapper = ObjectMapper()
+            .registerKotlinModule()
+            .registerModule(SimpleModule()
+                .addDeserializer(SkWeatherStatus::class.java, SkWeatherStatusDeserializer()))
+
         request = Retrofit.Builder()
-            .addConverterFactory(JacksonConverterFactory.create())
+            .addConverterFactory(JacksonConverterFactory.create(objectMapper))
             .baseUrl(WEATHER_BASE_URL)
             .client(OkHttpClient.Builder()
                 .addInterceptor { chain ->
@@ -48,8 +56,8 @@ object SkWeatherClient {
     /**
      * 동기적으로 호출한다.
      */
-    fun call(): Response<RawSkWeatherStatus> {
-        return request.weatherStatus().execute()
+    fun call(): Response<SkWeatherStatus> {
+        TODO()
     }
 
     /**

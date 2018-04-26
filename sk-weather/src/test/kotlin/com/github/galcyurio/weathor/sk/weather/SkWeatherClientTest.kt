@@ -9,7 +9,7 @@ class SkWeatherClientTest {
 
     @Test
     fun `동기적인 호출 후에 리턴값으로 VO class 반환`() {
-
+        
     }
 
     @Test
