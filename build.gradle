@@ -25,7 +25,8 @@ ext.deps = [
         retrofitJacksonConverter: "com.squareup.retrofit2:converter-jackson:${versions.retrofit}",
 
         junit                   : "junit:junit:${versions.junit}",
-        assertj                 : "org.assertj:assertj-core:${versions.assertj}"
+        assertj                 : "org.assertj:assertj-core:${versions.assertj}",
+        okhttpMockWebServer     : "com.squareup.okhttp3:mockwebserver:${versions.okhttp}"
 ]
 
 group config.group

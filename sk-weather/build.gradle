@@ -24,6 +24,7 @@ dependencies {
 
     testCompile deps.junit
     testCompile deps.assertj
+    testCompile deps.okhttpMockWebServer
 }
 
 compileKotlin {
