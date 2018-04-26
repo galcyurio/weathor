@@ -36,16 +36,18 @@ class SkWeatherClient private constructor(
 
     /**
      * 동기적으로 호출한다.
+     * @param latitude 위도
+     * @param longitude 경도
      */
-    fun call(): Response<SkWeatherStatus> {
-        return request.weatherStatus().execute()
+    fun call(latitude: Double, longitude: Double): Response<SkWeatherStatus> {
+        return request.weatherStatus(latitude, longitude).execute()
     }
 
     /**
      * 비동기적으로 호출한다
      */
-    fun callAsync(callback: Callback<SkWeatherStatus>) {
-        request.weatherStatus().enqueue(callback)
+    fun callAsync(latitude: Double, longitude: Double, callback: Callback<SkWeatherStatus>) {
+        request.weatherStatus(latitude, longitude).enqueue(callback)
     }
 
     class Builder {

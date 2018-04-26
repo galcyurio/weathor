@@ -19,6 +19,8 @@ import java.util.concurrent.TimeUnit
 class SkWeatherClientTest {
 
     private val json = File(this.javaClass.classLoader.getResource("mock/WeatherStatus.json").toURI()).readText()
+    private val latitude = 37.5660649
+    private val longitude = 126.9826791
 
     private lateinit var server: MockWebServer
     private lateinit var client: SkWeatherClient
@@ -42,7 +44,7 @@ class SkWeatherClientTest {
 
     @Test
     fun `동기적인 호출 후에 리턴값으로 VO class 반환`() {
-        val skWeatherStatus = client.call().body()
+        val skWeatherStatus = client.call(latitude, longitude).body()
 
         assertThat(skWeatherStatus).hasNoNullFieldsOrProperties()
         server.close()
@@ -50,7 +52,7 @@ class SkWeatherClientTest {
 
     @Test
     fun `비동기적인 호출 후에 callback 함수로 VO class 간접적으로 반환`() {
-        client.callAsync(object : SkWeatherCallbackAdapter<SkWeatherStatus> {
+        client.callAsync(latitude, longitude, object : SkWeatherCallbackAdapter<SkWeatherStatus> {
             override fun onSuccess(call: Call<SkWeatherStatus>, response: Response<SkWeatherStatus>) {
                 val skWeatherStatus = response.body()
                 assertThat(skWeatherStatus).hasNoNullFieldsOrProperties()
