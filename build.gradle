@@ -49,6 +49,7 @@ allprojects {
 
 subprojects {
     apply plugin: 'kotlin'
+    apply plugin: 'org.unbroken-dome.test-sets'
 
     repositories {
         mavenCentral()
@@ -57,6 +58,10 @@ subprojects {
     dependencies {
         testCompile deps.junit
         testCompile deps.assertj
+    }
+
+    testSets {
+        integrationTest
     }
 
     compileKotlin {
