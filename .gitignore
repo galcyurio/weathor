@@ -108,3 +108,5 @@ gradle-app.setting
 hs_err_pid*
 /.idea/
 *.iml
+
+/sk-weather-wrapper/src/integrationTest/resources/secret.properties
