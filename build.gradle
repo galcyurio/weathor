@@ -42,14 +42,13 @@ buildscript {
     }
 }
 
-group config.group
-version config.version
+allprojects {
+    group = config.group
+    version = config.version
+}
 
 subprojects {
     apply plugin: 'kotlin'
-
-    group = config.group
-    version = config.version
 
     repositories {
         mavenCentral()
