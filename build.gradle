@@ -64,6 +64,11 @@ subprojects {
         integrationTest
     }
 
+    compileIntegrationTestJava.options.encoding = "UTF-8"
+
+    check.dependsOn integrationTest
+    integrationTest.mustRunAfter test
+
     compileKotlin {
         kotlinOptions.jvmTarget = "1.8"
     }
