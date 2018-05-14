@@ -65,6 +65,7 @@ subprojects {
     }
 
     compileIntegrationTestJava.options.encoding = "UTF-8"
+    integrationTest { outputs.upToDateWhen { false } }
 
     check.dependsOn integrationTest
     integrationTest.mustRunAfter test
