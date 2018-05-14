@@ -1,19 +1,22 @@
 buildscript {
     ext.config = [
-            group  : "com.github.galcyurio",
-            version: "0.0.1-SNAPSHOT"
+            group  : "com.github.galcyurio.weathor",
+            version: "0.0.1-SNAPSHOT",
+            user   : "galcyurio",
+            website: "https://github.com/galcyurio/weathor"
     ]
 
     ext.versions = [
-            kotlin  : "1.2.40",
-            testSets: "1.4.5",
+            kotlin        : "1.2.40",
+            testSets      : "1.4.5",
+            bintrayRelease: "0.8.1",
 
-            jackson : "2.9.5",
-            okhttp  : "3.10.0",
-            retrofit: "2.4.0",
+            jackson       : "2.9.5",
+            okhttp        : "3.10.0",
+            retrofit      : "2.4.0",
 
-            junit   : "4.12",
-            assertj : "3.9.0"
+            junit         : "4.12",
+            assertj       : "3.9.0"
     ]
 
     ext.deps = [
@@ -39,6 +42,7 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
         classpath "org.unbroken-dome.gradle-plugins:gradle-testsets-plugin:${versions.testSets}"
+        classpath "com.novoda:bintray-release:${versions.bintrayRelease}"
     }
 }
 

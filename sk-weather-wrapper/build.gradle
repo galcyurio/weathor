@@ -1,3 +1,5 @@
+apply plugin: 'com.novoda.bintray-release'
+
 dependencies {
     compile deps.kotlinStdLib
     compile deps.retrofit
@@ -5,4 +7,13 @@ dependencies {
     compile deps.jacksonModuleKotlin
 
     testCompile deps.okhttpMockWebServer
+}
+
+publish {
+    userOrg = config.user
+    groupId = config.group
+    artifactId = project.name
+    publishVersion = config.version
+    desc = "SK텔레콤 Weather API wrapper 라이브러리"
+    website = config.website
 }
