@@ -1,7 +1,7 @@
 buildscript {
     ext.config = [
             group  : "com.github.galcyurio.weathor",
-            version: "0.0.1",
+            version: "0.0.2-SNAPSHOT",
             user   : "galcyurio",
             website: "https://github.com/galcyurio/weathor"
     ]
