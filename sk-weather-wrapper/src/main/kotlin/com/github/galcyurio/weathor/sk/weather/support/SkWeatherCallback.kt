@@ -7,17 +7,17 @@ import retrofit2.Response
 /**
  * @author galcyurio
  */
-interface SkWeatherCallback<T> : Callback<T> {
+abstract class SkWeatherCallback<T> : Callback<T> {
 
     /**
      * 응답을 받았으며 [Response.isSuccessful] 값이 `true`인 경우 (200 ~ 299)
      */
-    fun onSuccess(call: Call<T>, response: Response<T>)
+    abstract fun onSuccess(call: Call<T>, response: Response<T>)
 
     /**
      * 응답을 받았으나 [Response.isSuccessful] 값이 `false`인 경우
      */
-    fun onResponseError(call: Call<T>, response: Response<T>)
+    abstract fun onResponseError(call: Call<T>, response: Response<T>)
 
     override fun onResponse(call: Call<T>, response: Response<T>) {
         if (response.isSuccessful) {
@@ -27,5 +27,5 @@ interface SkWeatherCallback<T> : Callback<T> {
         }
     }
 
-    override fun onFailure(call: Call<T>, t: Throwable)
+    abstract override fun onFailure(call: Call<T>, t: Throwable)
 }

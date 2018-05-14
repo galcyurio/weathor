@@ -46,7 +46,7 @@ class SkWeatherClientTest {
     @Test
     fun `Weather API 서버에 비동기적으로 요청`() {
         val lock = CountDownLatch(1)
-        client.callAsync(latitude, longitude, object : SkWeatherCallbackAdapter<SkWeatherStatus> {
+        client.callAsync(latitude, longitude, object : SkWeatherCallbackAdapter<SkWeatherStatus>() {
             override fun onSuccess(call: Call<SkWeatherStatus>, response: Response<SkWeatherStatus>) {
                 val skWeatherStatus = response.body()
                 assertThat(skWeatherStatus).isNotNull()

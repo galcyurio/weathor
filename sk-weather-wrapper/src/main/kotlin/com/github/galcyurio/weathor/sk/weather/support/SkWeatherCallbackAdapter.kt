@@ -7,7 +7,7 @@ import retrofit2.Response
  * [SkWeatherCallback]의 구현체
  * @author galcyurio
  */
-interface SkWeatherCallbackAdapter<T> : SkWeatherCallback<T> {
+abstract class SkWeatherCallbackAdapter<T> : SkWeatherCallback<T>() {
 
     override fun onSuccess(call: Call<T>, response: Response<T>) {
         /* empty */
