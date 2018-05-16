@@ -2,6 +2,8 @@
 SK텔레콤의 Weather API 서비스의 wrapper 라이브러리입니다.  
 https://developers.sktelecom.com/content/sktApi/view/?svcId=10073
 
+[![Download](https://api.bintray.com/packages/galcyurio/maven/sk-weather-wrapper/images/download.svg)](https://bintray.com/galcyurio/maven/sk-weather-wrapper/_latestVersion)
+
 ## 미리 해두어야 할 작업들
 해당 라이브러리를 쓰기 전에 미리 해두어야 할 작업들이 있습니다.  
 먼저 [SK텔레콤의 개발자 페이지](https://developers.sktelecom.com/)에서 회원가입을 해야 합니다.  
