@@ -10,7 +10,15 @@ https://developers.sktelecom.com/content/sktApi/view/?svcId=10073
 
 ## 시작하기
 ### Gradle
-<!-- TODO: jCenter에 배포한 후에 작성 -->
+````groovy
+repositories {
+  jcenter()
+}
+
+dependencies {
+  compile "com.github.galcyurio.weathor:sk-weather-wrapper:${version}"
+}
+````
 
 ### 초기화
 ````java
