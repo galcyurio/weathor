@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-  compile "com.github.galcyurio.weathor:sk-weather-wrapper:${version}"
+  implementation "com.github.galcyurio.weathor:sk-weather-wrapper:${version}"
 }
 ````
 
