@@ -1,4 +1,5 @@
 rootProject.name = 'weathor'
 include 'sk-weather-planet-wrapper'
 include 'sk-weather-wrapper'
+include 'weathor-commons'
 
