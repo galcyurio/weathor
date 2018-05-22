@@ -1,13 +1,13 @@
-package com.github.galcyurio.weathor.sk.weather.support
+package com.github.galcyurio.weathor.commons
 
 import retrofit2.Call
 import retrofit2.Response
 
 /**
- * [SkWeatherCallback]의 구현체
+ * [WeathorCallback]의 구현체
  * @author galcyurio
  */
-open class SkWeatherCallbackAdapter<T> : SkWeatherCallback<T>() {
+open class WeathorCallbackAdapter<T> : WeathorCallback<T>() {
 
     override fun onSuccess(call: Call<T>, response: Response<T>) {
         /* empty */

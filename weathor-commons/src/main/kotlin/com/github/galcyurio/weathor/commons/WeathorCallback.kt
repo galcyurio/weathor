@@ -1,4 +1,4 @@
-package com.github.galcyurio.weathor.sk.weather.support
+package com.github.galcyurio.weathor.commons
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -7,7 +7,7 @@ import retrofit2.Response
 /**
  * @author galcyurio
  */
-abstract class SkWeatherCallback<T> : Callback<T> {
+abstract class WeathorCallback<T> : Callback<T> {
 
     /**
      * 응답을 받았으며 [Response.isSuccessful] 값이 `true`인 경우 (200 ~ 299)

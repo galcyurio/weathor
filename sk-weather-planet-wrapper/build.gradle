@@ -1,7 +1,6 @@
 dependencies {
-    compile deps.kotlinStdLib
+    implementation deps.kotlinStdLib
     compile deps.retrofit
-    compile deps.retrofitJacksonConverter
-
+    implementation deps.retrofitJacksonConverter
     compile project(':weathor-commons')
 }
