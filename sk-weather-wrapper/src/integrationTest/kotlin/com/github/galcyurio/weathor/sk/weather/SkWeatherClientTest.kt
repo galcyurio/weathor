@@ -1,7 +1,7 @@
 package com.github.galcyurio.weathor.sk.weather
 
 import com.github.galcyurio.weathor.sk.weather.data.SkWeatherStatus
-import com.github.galcyurio.weathor.sk.weather.support.SkWeatherCallbackAdapter
+import com.github.galcyurio.weathor.commons.WeathorCallbackAdapter
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.BeforeClass
 import org.junit.Test
@@ -46,7 +46,7 @@ class SkWeatherClientTest {
     @Test
     fun `Weather API 서버에 비동기적으로 요청`() {
         val lock = CountDownLatch(1)
-        client.callAsync(latitude, longitude, object : SkWeatherCallbackAdapter<SkWeatherStatus>() {
+        client.callAsync(latitude, longitude, object : WeathorCallbackAdapter<SkWeatherStatus>() {
             override fun onSuccess(call: Call<SkWeatherStatus>, response: Response<SkWeatherStatus>) {
                 val skWeatherStatus = response.body()
                 assertThat(skWeatherStatus).isNotNull()
