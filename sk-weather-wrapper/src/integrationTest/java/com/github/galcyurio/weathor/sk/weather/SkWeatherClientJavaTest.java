@@ -1,7 +1,7 @@
 package com.github.galcyurio.weathor.sk.weather;
 
 import com.github.galcyurio.weathor.sk.weather.data.SkWeatherStatus;
-import com.github.galcyurio.weathor.sk.weather.support.SkWeatherCallbackAdapter;
+import com.github.galcyurio.weathor.commons.WeathorCallbackAdapter;
 
 import org.jetbrains.annotations.NotNull;
 import org.junit.BeforeClass;
@@ -49,7 +49,7 @@ public class SkWeatherClientJavaTest {
     @Test
     public void _Weather_API_서버에_비동기적으로_요청() throws Exception {
         final CountDownLatch lock = new CountDownLatch(1);
-        client.callAsync(latitude, longitude, new SkWeatherCallbackAdapter<SkWeatherStatus>() {
+        client.callAsync(latitude, longitude, new WeathorCallbackAdapter<SkWeatherStatus>() {
             @Override
             public void onSuccess(@NotNull Call<SkWeatherStatus> call, @NotNull Response<SkWeatherStatus> response) {
                 SkWeatherStatus status = response.body();

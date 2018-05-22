@@ -1,7 +1,7 @@
 package com.github.galcyurio.weathor.sk.weather
 
 import com.github.galcyurio.weathor.sk.weather.data.SkWeatherStatus
-import com.github.galcyurio.weathor.sk.weather.support.SkWeatherCallbackAdapter
+import com.github.galcyurio.weathor.commons.WeathorCallbackAdapter
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.assertj.core.api.Assertions.assertThat
@@ -52,7 +52,7 @@ class SkWeatherClientTest {
 
     @Test
     fun `비동기적인 호출 후에 callback 함수로 VO class 간접적으로 반환`() {
-        client.callAsync(latitude, longitude, object : SkWeatherCallbackAdapter<SkWeatherStatus>() {
+        client.callAsync(latitude, longitude, object : WeathorCallbackAdapter<SkWeatherStatus>() {
             override fun onSuccess(call: Call<SkWeatherStatus>, response: Response<SkWeatherStatus>) {
                 val skWeatherStatus = response.body()
                 assertThat(skWeatherStatus).hasNoNullFieldsOrProperties()
