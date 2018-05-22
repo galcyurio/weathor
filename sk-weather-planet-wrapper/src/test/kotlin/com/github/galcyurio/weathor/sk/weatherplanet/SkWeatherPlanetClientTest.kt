@@ -1,6 +1,5 @@
-package weatherplanet
+package com.github.galcyurio.weathor.sk.weatherplanet
 
-import com.github.galcyurio.weathor.sk.weatherplanet.SkWeatherPlanetClient
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.BeforeClass
 import org.junit.Test
