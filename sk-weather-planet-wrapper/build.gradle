@@ -1,3 +1,5 @@
+apply from: '../gradle/tasks.gradle'
+
 dependencies {
     implementation deps.kotlinStdLib
     compile deps.retrofit

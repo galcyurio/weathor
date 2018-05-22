@@ -1,4 +1,5 @@
 apply plugin: 'com.novoda.bintray-release'
+apply from: '../gradle/tasks.gradle'
 
 dependencies {
     implementation deps.kotlinStdLib

@@ -1,0 +1,6 @@
+task copySecretsToIntegrationTestResources(type: Copy) {
+    from rootProject.file('.secrets')
+    into sourceSets.integrationTest.output.resourcesDir
+}
+
+processIntegrationTestResources.dependsOn copySecretsToIntegrationTestResources
