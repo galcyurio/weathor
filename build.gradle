@@ -61,8 +61,8 @@ subprojects {
     }
 
     dependencies {
-        testCompile deps.junit
-        testCompile deps.assertj
+        testImplementation deps.junit
+        testImplementation deps.assertj
     }
 
     testSets {

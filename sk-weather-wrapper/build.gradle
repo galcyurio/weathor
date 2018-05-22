@@ -1,13 +1,13 @@
 apply plugin: 'com.novoda.bintray-release'
 
 dependencies {
-    compile deps.kotlinStdLib
+    implementation deps.kotlinStdLib
     compile deps.retrofit
-    compile deps.retrofitJacksonConverter
-    compile deps.jacksonModuleKotlin
+    implementation deps.retrofitJacksonConverter
+    implementation deps.jacksonModuleKotlin
     compile project(':weathor-commons')
 
-    testCompile deps.okhttpMockWebServer
+    testImplementation deps.okhttpMockWebServer
 }
 
 publish {
