@@ -29,7 +29,7 @@ class SkWeatherClient private constructor(
         /**
          * SK planet 서비스의 Location API 중 [Weather](https://developers.sktelecom.com/content/sktApi/view/?svcId=10073)의 `baseUrl`이다.
          */
-        private const val WEATHER_BASE_URL = "https://apis.sktelecom.com/v1/"
+        const val WEATHER_BASE_URL = "https://apis.sktelecom.com/v1/"
     }
 
     private val request: SkWeatherRequest by lazy { retrofit.create(SkWeatherRequest::class.java) }
