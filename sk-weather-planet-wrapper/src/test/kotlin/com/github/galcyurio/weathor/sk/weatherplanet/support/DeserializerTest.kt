@@ -58,6 +58,15 @@ class DeserializerTest {
     }
 
     @Test
+    fun `Pressure json 파일 역직렬화`() {
+        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/pressure.json")
+        val pressure = mapper.readValue(inputStream, Pressure::class.java)
+
+        println(pressure)
+        assertThat(pressure).isNotNull()
+    }
+
+    @Test
     fun `Common json 파일 역직렬화`() {
         val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/common.json")
         val common = mapper.readValue(inputStream, Common::class.java)
