@@ -20,6 +20,8 @@ class SkWeatherPlanetClient private constructor(
         const val WEATHER_PLANET_BASE_URL = "https://api2.sktelecom.com/weather/"
     }
 
+    
+
     class Builder {
         private var apiKey: String? = null
         private var baseUrl: HttpUrl = HttpUrl.parse(WEATHER_PLANET_BASE_URL)!!
