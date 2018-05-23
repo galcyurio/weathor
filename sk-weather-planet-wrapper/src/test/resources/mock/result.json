@@ -1,0 +1,5 @@
+{
+  "code": 9200,
+  "requestUrl": "/weather/current/minutely?appKey=dummy&version=2&lat=36.1234&lon=127.1234",
+  "message": "성공"
+}

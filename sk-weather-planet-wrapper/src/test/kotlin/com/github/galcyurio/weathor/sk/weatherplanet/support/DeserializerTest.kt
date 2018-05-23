@@ -2,10 +2,7 @@ package com.github.galcyurio.weathor.sk.weatherplanet.support
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import com.github.galcyurio.weathor.sk.weatherplanet.data.Common
-import com.github.galcyurio.weathor.sk.weatherplanet.data.Precipitation
-import com.github.galcyurio.weathor.sk.weatherplanet.data.Rain
-import com.github.galcyurio.weathor.sk.weatherplanet.data.Sky
+import com.github.galcyurio.weathor.sk.weatherplanet.data.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
@@ -67,5 +64,14 @@ class DeserializerTest {
 
         println(common)
         assertThat(common).isNotNull()
+    }
+
+    @Test
+    fun `Result json 파일 역직렬화`() {
+        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/result.json")
+        val result = mapper.readValue(inputStream, Result::class.java)
+
+        println(result)
+        assertThat(result).isNotNull()
     }
 }
