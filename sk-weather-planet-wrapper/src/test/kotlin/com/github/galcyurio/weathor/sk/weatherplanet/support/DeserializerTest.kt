@@ -14,7 +14,7 @@ import org.junit.Test
  */
 class DeserializerTest {
 
-    lateinit var mapper: ObjectMapper
+    private lateinit var mapper: ObjectMapper
 
     @Before
     fun setUp() {
@@ -47,7 +47,7 @@ class DeserializerTest {
     }
 
     @Test
-    fun `Sky json 파일 테스트`() {
+    fun `Sky json 파일 역직렬화 테스트`() {
         val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/sky.json")
         val sky = mapper.readValue(inputStream, Sky::class.java)
 
