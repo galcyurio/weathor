@@ -1,0 +1,59 @@
+{
+  "weather": {
+    "minutely": [
+      {
+        "precipitation": {
+          "sinceOntime": "0.17",
+          "type": "1"
+        },
+        "sky": {
+          "code": "SKY_A08",
+          "name": "흐리고 비"
+        },
+        "rain": {
+          "sinceOntime": "2.00",
+          "sinceMidnight": "2.00",
+          "last10min": "1.00",
+          "last15min": "1.00",
+          "last30min": "2.00",
+          "last1hour": "3.00",
+          "last6hour": "9.00",
+          "last12hour": "10.50",
+          "last24hour": "10.50"
+        },
+        "temperature": {
+          "tc": "16.50",
+          "tmax": "24.00",
+          "tmin": "13.00"
+        },
+        "humidity": "",
+        "pressure": {
+          "surface": "",
+          "seaLevel": ""
+        },
+        "lightning": "0",
+        "timeObservation": "2018-05-23 00:31:00",
+        "station": {
+          "latitude": "36.1366",
+          "longitude": "127.0901",
+          "name": "연무",
+          "id": "644",
+          "type": "KMA"
+        },
+        "wind": {
+          "wdir": "9.00",
+          "wspd": "0.40"
+        }
+      }
+    ]
+  },
+  "common": {
+    "alertYn": "N",
+    "stormYn": "N"
+  },
+  "result": {
+    "code": 9200,
+    "requestUrl": "/weather/current/minutely?appKey=4e8efef7-daec-4baa-9388-73d86808e0cb&version=2&lat=36.1234&lon=127.1234",
+    "message": "성공"
+  }
+}
