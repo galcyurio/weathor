@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.github.galcyurio.weathor.sk.weatherplanet.data.Precipitation
+import com.github.galcyurio.weathor.sk.weatherplanet.data.Rain
 import com.github.galcyurio.weathor.sk.weatherplanet.data.Sky
 import org.assertj.core.api.Assertions
 import org.junit.Before
@@ -53,5 +54,13 @@ class DeserializerTest {
 
         println(sky)
         Assertions.assertThat(sky).isEqualTo(Sky.SKY_A08)
+    }
+
+    @Test
+    fun `Rain json 파일 역직렬화 테스트`() {
+        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/rain.json")
+        val rain = mapper.readValue(inputStream, Rain::class.java)
+
+        println(rain)
     }
 }
