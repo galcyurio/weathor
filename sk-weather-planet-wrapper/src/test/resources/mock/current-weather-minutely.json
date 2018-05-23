@@ -53,7 +53,7 @@
   },
   "result": {
     "code": 9200,
-    "requestUrl": "/weather/current/minutely?appKey=4e8efef7-daec-4baa-9388-73d86808e0cb&version=2&lat=36.1234&lon=127.1234",
+    "requestUrl": "/weather/current/minutely?appKey=dummyAppKey&version=2&lat=36.1234&lon=127.1234",
     "message": "성공"
   }
 }
