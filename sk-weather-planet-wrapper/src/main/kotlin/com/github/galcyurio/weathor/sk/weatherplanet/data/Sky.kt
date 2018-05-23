@@ -1,9 +1,13 @@
 package com.github.galcyurio.weathor.sk.weatherplanet.data
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.github.galcyurio.weathor.sk.weatherplanet.support.SkyDeserializer
+
 /**
  * 하늘상태 정보
  * @author galcyurio
  */
+@JsonDeserialize(using = SkyDeserializer::class)
 enum class Sky(val korean: String) {
     /** 맑음 */
     SKY_A01("맑음"),

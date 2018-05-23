@@ -1,7 +1,6 @@
 package com.github.galcyurio.weathor.sk.weatherplanet.support
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.github.galcyurio.weathor.sk.weatherplanet.data.Precipitation
 import com.github.galcyurio.weathor.sk.weatherplanet.data.Rain
@@ -19,12 +18,7 @@ class DeserializerTest {
 
     @Before
     fun setUp() {
-        mapper = ObjectMapper()
-            .registerKotlinModule()
-            .registerModule(SimpleModule()
-                .addDeserializer(Precipitation::class.java, PrecipitationDeserializer())
-                .addDeserializer(Sky::class.java, SkyDeserializer())
-            )
+        mapper = ObjectMapper().registerKotlinModule()
     }
 
     @Test
