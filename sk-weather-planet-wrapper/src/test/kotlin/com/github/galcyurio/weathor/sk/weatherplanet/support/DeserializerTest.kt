@@ -27,7 +27,7 @@ class DeserializerTest {
     }
 
     @Test
-    fun `Pricipitation json파일 역직렬화 테스트 - MILLIMETER`() {
+    fun `Precipitation json 파일 역직렬화 테스트 - MILLIMETER`() {
         val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/precipitation-0.json")
         val precipitation = mapper.readValue(inputStream, Precipitation::class.java)
 
@@ -37,7 +37,7 @@ class DeserializerTest {
     }
 
     @Test
-    fun `Pricipitation json파일 역직렬화 테스트 - CENTIMETER`() {
+    fun `Precipitation json 파일 역직렬화 테스트 - CENTIMETER`() {
         val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/precipitation-3.json")
         val precipitation = mapper.readValue(inputStream, Precipitation::class.java)
 
