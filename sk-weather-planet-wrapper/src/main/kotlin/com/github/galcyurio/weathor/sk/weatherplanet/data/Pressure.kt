@@ -6,8 +6,8 @@ package com.github.galcyurio.weathor.sk.weatherplanet.data
  */
 data class Pressure(
     /** 현지기압(surface pressure) */
-    val surface: Float,
+    val surface: Float?,
 
     /** 해면기압(sea level pressure) */
-    val seaLevel: Float
+    val seaLevel: Float?
 )

@@ -33,7 +33,7 @@ data class CurrentWeatherMinutely(
         val temperature: Temperature,
 
         /** 상대 습도 (%) */
-        val humidity: Float,
+        val humidity: Float?,
 
         /** 기압 정보 */
         val pressure: Pressure,
@@ -48,6 +48,9 @@ data class CurrentWeatherMinutely(
         val observationTime: Date,
 
         /** 관측소 정보 */
-        val station: Station
+        val station: Station,
+
+        /** 바람 정보 */
+        val wind: Wind
     )
 }
