@@ -19,7 +19,7 @@ data class CurrentWeatherMinutely(
 
     val result: Result
 ) {
-    class Element(
+    data class Element(
         /** 강수 정보 */
         val precipitation: Precipitation,
 
