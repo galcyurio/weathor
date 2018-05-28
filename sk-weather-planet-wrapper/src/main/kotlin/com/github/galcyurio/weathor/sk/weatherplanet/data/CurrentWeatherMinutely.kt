@@ -45,6 +45,9 @@ data class CurrentWeatherMinutely(
         /** 관측 시간 */
         @JsonDeserialize(using = SkTimeDeserializer::class)
         @JsonProperty("timeObservation")
-        val observationTime: Date
+        val observationTime: Date,
+
+        /** 관측소 정보 */
+        val station: Station
     )
 }
