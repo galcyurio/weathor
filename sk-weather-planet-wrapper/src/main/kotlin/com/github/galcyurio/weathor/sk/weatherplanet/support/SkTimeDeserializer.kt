@@ -11,6 +11,6 @@ import java.util.*
  */
 class SkTimeDeserializer : StdDeserializer<Date>(Date::class.java) {
     override fun deserialize(p: JsonParser, ctxt: DeserializationContext): Date {
-        return SimpleDateFormat("yyyy-MM-dd HH-mm-ss", Locale.KOREA).parse(p.text)
+        return SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA).parse(p.text)
     }
 }
