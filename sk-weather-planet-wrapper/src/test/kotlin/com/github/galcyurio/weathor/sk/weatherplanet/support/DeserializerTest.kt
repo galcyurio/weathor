@@ -29,7 +29,7 @@ class DeserializerTest {
 
     @Test
     fun `Precipitation json 파일 역직렬화 - MILLIMETER`() {
-        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/precipitation-0.json")
+        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/part/precipitation-0.json")
         val precipitation = mapper.readValue(inputStream, Precipitation::class.java)
 
         println(precipitation)
@@ -39,7 +39,7 @@ class DeserializerTest {
 
     @Test
     fun `Precipitation json 파일 역직렬화 - CENTIMETER`() {
-        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/precipitation-3.json")
+        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/part/precipitation-3.json")
         val precipitation = mapper.readValue(inputStream, Precipitation::class.java)
 
         println(precipitation)
@@ -49,7 +49,7 @@ class DeserializerTest {
 
     @Test
     fun `Sky json 파일 역직렬화`() {
-        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/sky.json")
+        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/part/sky.json")
         val sky = mapper.readValue(inputStream, Sky::class.java)
 
         println(sky)
@@ -58,7 +58,7 @@ class DeserializerTest {
 
     @Test
     fun `Rain json 파일 역직렬화`() {
-        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/rain.json")
+        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/part/rain.json")
         val rain = mapper.readValue(inputStream, Rain::class.java)
 
         println(rain)
@@ -67,7 +67,7 @@ class DeserializerTest {
 
     @Test
     fun `Pressure json 파일 역직렬화`() {
-        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/pressure.json")
+        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/part/pressure.json")
         val pressure = mapper.readValue(inputStream, Pressure::class.java)
 
         println(pressure)
@@ -76,7 +76,7 @@ class DeserializerTest {
 
     @Test
     fun `Common json 파일 역직렬화`() {
-        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/common.json")
+        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/part/common.json")
         val common = mapper.readValue(inputStream, Common::class.java)
 
         println(common)
@@ -85,7 +85,7 @@ class DeserializerTest {
 
     @Test
     fun `Result json 파일 역직렬화`() {
-        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/result.json")
+        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/part/result.json")
         val result = mapper.readValue(inputStream, Result::class.java)
 
         println(result)
