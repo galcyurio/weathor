@@ -1,0 +1,48 @@
+{
+  "result": {
+    "message": "성공",
+    "code": 9200,
+    "requestUrl": "/weather/severe/alert?version=2&lat=33.514&lon=126.5297"
+  },
+  "common": {
+    "alertYn": "Y",
+    "stormYn": "N"
+  },
+  "weather": {
+    "alert": [
+      {
+        "grid": {
+          "city": "제주",
+          "county": "제주시",
+          "village": "건입동"
+        },
+        "number": "1",
+        "timeRelease": "2013-10-01 19:30:00",
+        "stationId": "108",
+        "areaCode": "L1090500",
+        "areaName": "제주도산간",
+        "timeStart": "2013-10-01 19:30:00",
+        "timeEnd": "",
+        "timeAllEnd": "",
+        "alert51": {
+          "cmdCode": "1",
+          "cmdName": "발표",
+          "varCode": "2",
+          "varName": "호우",
+          "stressCode": "0",
+          "stressName": "주의보"
+        },
+        "alert60": {
+          "t1": "호우주의보 발표",
+          "t2": "(1) 호우주의보 발표 : 제주도(제주도산간)",
+          "t3": "(1) 호우주의보 발표 : 2013년 10월 01일 19시 30분",
+          "t4": "(1) 호우주의보 발표\r\n  o 현재 강수량(1일 9시 ~ 현재): 10~110mm\n  o 예상 강수량(현재~2일 오전까지): 10~30mm\n  o 총 예상 강수량: 20~140mm",
+          "t5": "2013-10-01 19:30:00",
+          "t6": "o 호우주의보 : 제주도(제주도산간)",
+          "t7": "(1) 강풍 예비특보\r\no 10월 02일 낮 : 서해5도\r\no 10월 02일 밤 : 흑산도.홍도\r\n(2) 풍랑 예비특보\r\no 10월 02일 낮 : 서해중부먼바다\r\no 10월 02일 밤 : 서해남부먼바다, 제주도남쪽먼바다",
+          "other": "o 없음"
+        }
+      }
+    ]
+  }
+}

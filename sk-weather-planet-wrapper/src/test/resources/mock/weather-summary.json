@@ -1,0 +1,69 @@
+{
+  "result": {
+    "code": 9200,
+    "requestUrl": "/weather/summary?version=2&lat=37.1234&lon=127.1234",
+    "message": "성공"
+  },
+  "common": {
+    "alertYn": "Y",
+    "stormYn": "N"
+  },
+  "weather": {
+    "summary": [
+      {
+        "grid": {
+          "longitude": "127.0977600000",
+          "latitude": "37.1177600000",
+          "city": "경기",
+          "county": "오산시",
+          "village": "청호동"
+        },
+        "timeRelease": "2017-06-02 17:00:00",
+        "yesterday": {
+          "precipitation": {
+            "rain": "0.10",
+            "snow": "0.00"
+          },
+          "sky": {
+            "code": "SKY_Y05",
+            "name": "비"
+          },
+          "temperature": {
+            "tmax": "25.80",
+            "tmin": "16.70"
+          }
+        },
+        "today": {
+          "sky": {
+            "code": "SKY_D03",
+            "name": "구름많음"
+          },
+          "temperature": {
+            "tmax": "24.00",
+            "tmin": "12.00"
+          }
+        },
+        "tomorrow": {
+          "sky": {
+            "code": "SKY_M03",
+            "name": "구름많음"
+          },
+          "temperature": {
+            "tmax": "25.00",
+            "tmin": "13.00"
+          }
+        },
+        "dayAfterTomorrow": {
+          "sky": {
+            "code": "SKY_M01",
+            "name": "맑음"
+          },
+          "temperature": {
+            "tmax": "27.00",
+            "tmin": "12.00"
+          }
+        }
+      }
+    ]
+  }
+}

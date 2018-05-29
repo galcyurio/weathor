@@ -1,0 +1,32 @@
+{
+  "result": {
+    "message": "성공",
+    "code": 9200,
+    "requestUrl": "/weather/severe/lightning?version=2"
+  },
+  "common": {
+    "alertYn": "Y",
+    "stormYn": "N"
+  },
+  "weather": {
+    "lightning": [
+      {
+        "location": {
+          "lat": "36.1126",
+          "lon": "129.6439"
+        },
+        "type": "C",
+        "timeObservation": "2013-11-07 18:57:39",
+        "ce": {
+          "ce1": "28.60",
+          "ce2": "1.60",
+          "cee": "17.90",
+          "cea": "82.00"
+        },
+        "stroke": "9.20",
+        "mmp": "0.00",
+        "chi": "0.60"
+      }
+    ]
+  }
+}

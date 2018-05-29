@@ -1,0 +1,71 @@
+{
+  "weather": {
+    "forecast3hours": [
+      {
+        "grid": {
+          "city": "경기",
+          "county": "오산시",
+          "longitude": "127.0977600000",
+          "latitude": "37.1177600000",
+          "village": "청호동"
+        },
+        "wind": {
+          "wdir3hour": "314.00",
+          "wdir1hour": "293.00",
+          "wspd1hour": "3.90",
+          "wdir2hour": "303.00",
+          "wspd2hour": "3.70",
+          "wspd3hour": "3.70",
+          "wdir4hour": "",
+          "wspd4hour": ""
+        },
+        "precipitation": {
+          "sinceOntime3hour": "0.00",
+          "type3hour": "0",
+          "sinceOntime4hour": "",
+          "type4hour": "",
+          "sinceOntime1hour": "0.00",
+          "type1hour": "0",
+          "sinceOntime2hour": "0.00",
+          "type2hour": "0"
+        },
+        "sky": {
+          "code1hour": "SKY_V01",
+          "name1hour": "맑음",
+          "code2hour": "SKY_V01",
+          "name2hour": "맑음",
+          "code3hour": "SKY_V01",
+          "name3hour": "맑음",
+          "code4hour": "",
+          "name4hour": ""
+        },
+        "temperature": {
+          "temp2hour": "16.60",
+          "temp1hour": "18.20",
+          "temp3hour": "15.00",
+          "temp4hour": ""
+        },
+        "humidity": {
+          "rh1hour": "39.00",
+          "rh2hour": "39.00",
+          "rh3hour": "40.00",
+          "rh4hour": ""
+        },
+        "timeRelease": "2017-05-25 18:30:00",
+        "lightning1hour": "0",
+        "lightning2hour": "0",
+        "lightning3hour": "0",
+        "lightning4hour": ""
+      }
+    ]
+  },
+  "common": {
+    "alertYn": "Y",
+    "stormYn": "N"
+  },
+  "result": {
+    "code": 9200,
+    "requestUrl": "/weather/forecast/3hours?version=2&lat=37.123&lon=127.123",
+    "message": "성공"
+  }
+}
