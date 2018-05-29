@@ -2,6 +2,7 @@ package com.github.galcyurio.weathor.sk.weatherplanet
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import com.github.galcyurio.weathor.sk.weatherplanet.data.CurrentWeatherHourly
 import com.github.galcyurio.weathor.sk.weatherplanet.data.CurrentWeatherMinutely
 import org.junit.Before
 import org.junit.Test
@@ -23,5 +24,13 @@ class DeserializerTest {
         val currentWeatherMinutely = mapper.readValue(inputStream, CurrentWeatherMinutely::class.java)
 
         println(currentWeatherMinutely)
+    }
+
+    @Test
+    fun `CurrentWeatherHourly json 파일 역직렬화 테스트`() {
+        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/current-weather-hourly.json")
+        val currentWeatherHourly = mapper.readValue(inputStream, CurrentWeatherHourly::class.java)
+
+        println(currentWeatherHourly)
     }
 }
