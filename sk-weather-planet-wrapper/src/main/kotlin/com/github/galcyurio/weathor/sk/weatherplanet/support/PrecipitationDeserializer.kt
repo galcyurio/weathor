@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer
-import com.github.galcyurio.weathor.sk.weatherplanet.data.Precipitation
+import com.github.galcyurio.weathor.sk.weatherplanet.data.part.Precipitation
 
 /**
  * - if type=0/1/2 --> 강우량(mm)

@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer
-import com.github.galcyurio.weathor.sk.weatherplanet.data.Common
+import com.github.galcyurio.weathor.sk.weatherplanet.data.part.Common
 import com.github.galcyurio.weathor.sk.weatherplanet.data.CurrentWeatherMinutely
-import com.github.galcyurio.weathor.sk.weatherplanet.data.Result
+import com.github.galcyurio.weathor.sk.weatherplanet.data.part.Result
 
 /**
  * @author galcyurio

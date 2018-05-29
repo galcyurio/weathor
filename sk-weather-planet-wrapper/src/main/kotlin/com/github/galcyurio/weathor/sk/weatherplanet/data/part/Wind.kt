@@ -1,4 +1,4 @@
-package com.github.galcyurio.weathor.sk.weatherplanet.data
+package com.github.galcyurio.weathor.sk.weatherplanet.data.part
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

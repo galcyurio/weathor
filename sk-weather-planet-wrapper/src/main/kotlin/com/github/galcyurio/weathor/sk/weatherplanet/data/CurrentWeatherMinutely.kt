@@ -2,6 +2,7 @@ package com.github.galcyurio.weathor.sk.weatherplanet.data
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.github.galcyurio.weathor.sk.weatherplanet.data.part.*
 import com.github.galcyurio.weathor.sk.weatherplanet.support.CurrentWeatherMinutelyDeserializer
 import com.github.galcyurio.weathor.sk.weatherplanet.support.LightningDeserializer
 import com.github.galcyurio.weathor.sk.weatherplanet.support.SkTimeDeserializer
