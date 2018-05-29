@@ -3,7 +3,6 @@ package com.github.galcyurio.weathor.sk.weatherplanet
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.BeforeClass
 import org.junit.Test
-import java.util.*
 
 /**
  * @author galcyurio
@@ -14,13 +13,8 @@ class SkWeatherPlanetClientTest {
 
         @JvmStatic @BeforeClass
         fun setUp() {
-            val inputStream = SkWeatherPlanetClientTest::class.java.classLoader.getResourceAsStream("secret.properties")
-            val properties = Properties()
-            properties.load(inputStream)
-            val apiKey = properties.getProperty("apiKey")
-
             client = SkWeatherPlanetClient.Builder()
-                .apiKey(apiKey)
+                .apiKey("dummyApiKey")
                 .build()
         }
     }
