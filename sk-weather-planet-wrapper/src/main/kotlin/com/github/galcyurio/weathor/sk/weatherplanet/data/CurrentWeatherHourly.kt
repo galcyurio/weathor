@@ -3,6 +3,7 @@ package com.github.galcyurio.weathor.sk.weatherplanet.data
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.github.galcyurio.weathor.sk.weatherplanet.data.part.*
+import com.github.galcyurio.weathor.sk.weatherplanet.support.CurrentWeatherHourlyDeserializer
 import com.github.galcyurio.weathor.sk.weatherplanet.support.LightningDeserializer
 import com.github.galcyurio.weathor.sk.weatherplanet.support.SkTimeDeserializer
 import java.util.*
@@ -11,6 +12,7 @@ import java.util.*
  * 1시간 단위 현재날씨 정보
  * @author galcyurio
  */
+@JsonDeserialize(using = CurrentWeatherHourlyDeserializer::class)
 data class CurrentWeatherHourly(
     val elements: List<Element>,
     val common: Common,
