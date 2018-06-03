@@ -114,15 +114,15 @@ class ForecastWeather3Hours(
     /** 낙뢰 정보 (관측소 5km 반경 내) */
     data class LightningCollection(
         /** 낙뢰 확률 (발표시간+1시간) */
-        val after1hour: Boolean,
+        val after1hour: Lightning,
 
         /** 낙뢰 확률 (발표시간+1시간) */
-        val after2hour: Float,
+        val after2hour: Lightning,
 
         /** 낙뢰 확률 (발표시간+1시간) */
-        val after3hour: Float,
+        val after3hour: Lightning,
 
         /** 낙뢰 확률 (발표시간+1시간) */
-        val after4hour: Float? = null
+        val after4hour: Lightning? = null
     )
 }
