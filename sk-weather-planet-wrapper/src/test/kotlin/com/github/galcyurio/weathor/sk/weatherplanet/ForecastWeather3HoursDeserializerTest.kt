@@ -5,8 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.fasterxml.jackson.module.kotlin.treeToValue
 import com.github.galcyurio.weathor.sk.weatherplanet.data.ForecastWeather3Hours
-import com.github.galcyurio.weathor.sk.weatherplanet.data.ForecastWeather3Hours.PrecipitationCollection
-import com.github.galcyurio.weathor.sk.weatherplanet.data.ForecastWeather3Hours.WindCollection
+import com.github.galcyurio.weathor.sk.weatherplanet.data.ForecastWeather3Hours.*
 import com.github.galcyurio.weathor.sk.weatherplanet.data.part.Common
 import com.github.galcyurio.weathor.sk.weatherplanet.data.part.Grid
 import com.github.galcyurio.weathor.sk.weatherplanet.data.part.Result
@@ -66,17 +65,20 @@ class ForecastWeather3HoursDeserializerTest {
 
     @Test
     fun `SkyCollection 부분 역직렬화`() {
-        TODO("not implemented")
+        val actual = mapper.treeToValue<SkyCollection>(elementNode["sky"])
+        println(actual)
     }
 
     @Test
     fun `Temperature 부분 역직렬화`() {
-        TODO("not implemented")
+        val actual = mapper.treeToValue<Temperature>(elementNode["temperature"])
+        println(actual)
     }
 
     @Test
     fun `Humidity 부분 역직렬화`() {
-        TODO("not implemented")
+        val actual = mapper.treeToValue<Humidity>(elementNode["humidity"])
+        println(actual)
     }
 
     @Test

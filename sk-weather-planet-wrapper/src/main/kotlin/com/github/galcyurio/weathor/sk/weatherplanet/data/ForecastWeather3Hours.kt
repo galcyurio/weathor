@@ -3,9 +3,7 @@ package com.github.galcyurio.weathor.sk.weatherplanet.data
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.github.galcyurio.weathor.sk.weatherplanet.data.part.*
-import com.github.galcyurio.weathor.sk.weatherplanet.support.ForecastWeather3HoursDeserializer
-import com.github.galcyurio.weathor.sk.weatherplanet.support.SkTimeDeserializer
-import com.github.galcyurio.weathor.sk.weatherplanet.support.WindCollection3HoursDeserializer
+import com.github.galcyurio.weathor.sk.weatherplanet.support.*
 import java.util.*
 
 /**
@@ -50,6 +48,7 @@ class ForecastWeather3Hours(
     )
 
     /** 강수정보 */
+    @JsonDeserialize(using = PrecipitationCollection3HoursDeserializer::class)
     data class PrecipitationCollection(
         /** 강수정보 (발표시간+1시간) */
         val after1hour: Precipitation,
@@ -65,6 +64,7 @@ class ForecastWeather3Hours(
     )
 
     /** 하늘상태 정보 */
+    @JsonDeserialize(using = SkyCollection3HoursDeserializer::class)
     data class SkyCollection(
         /** 하늘상태 (발표시간+1시간) */
         val after1hour: Sky,
@@ -80,6 +80,7 @@ class ForecastWeather3Hours(
     )
 
     /** 기온 정보 */
+    @JsonDeserialize(using = Temperature3HoursDeserializer::class)
     data class Temperature(
         /** 기온 (발표시간+1시간) */
         val after1hour: Float,
@@ -95,6 +96,7 @@ class ForecastWeather3Hours(
     )
 
     /** 습도 정보 */
+    @JsonDeserialize(using = Humidity3HoursDeserializer::class)
     data class Humidity(
         /** 상대습도 (발표시간+1시간) */
         val after1hour: Float,
