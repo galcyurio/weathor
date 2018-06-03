@@ -3,6 +3,7 @@ package com.github.galcyurio.weathor.sk.weatherplanet.data
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.github.galcyurio.weathor.sk.weatherplanet.data.part.*
+import com.github.galcyurio.weathor.sk.weatherplanet.support.ForecastWeather3HoursDeserializer
 import com.github.galcyurio.weathor.sk.weatherplanet.support.SkTimeDeserializer
 import com.github.galcyurio.weathor.sk.weatherplanet.support.WindCollection3HoursDeserializer
 import java.util.*
@@ -11,6 +12,7 @@ import java.util.*
  * 1시간 간격으로 매일 24회, 5Km 격자 단위로 4시간까지의 초단기예보 정보
  * @author galcyurio
  */
+@JsonDeserialize(using = ForecastWeather3HoursDeserializer::class)
 class ForecastWeather3Hours(
     val elements: List<Element>,
     val common: Common,
