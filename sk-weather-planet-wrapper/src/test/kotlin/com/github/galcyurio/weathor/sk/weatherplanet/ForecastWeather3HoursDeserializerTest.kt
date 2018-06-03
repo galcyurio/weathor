@@ -54,13 +54,13 @@ class ForecastWeather3HoursDeserializerTest {
     @Test
     fun `WindCollection 부분 역직렬화`() {
         val actual = mapper.treeToValue<WindCollection>(elementNode["wind"])
-        println(actual)
+        assertThat(actual.after4hour).isNull()
     }
 
     @Test
     fun `PrecipitationCollection 부분 역직렬화`() {
         val actual = mapper.treeToValue<PrecipitationCollection>(elementNode["precipitation"])
-        println(actual)
+        assertThat(actual.after4hour).isNull()
     }
 
     @Test
