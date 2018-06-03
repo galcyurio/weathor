@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.github.galcyurio.weathor.sk.weatherplanet.data.part.*
 import com.github.galcyurio.weathor.sk.weatherplanet.support.SkTimeDeserializer
+import com.github.galcyurio.weathor.sk.weatherplanet.support.WindCollection3HoursDeserializer
 import java.util.*
 
 /**
@@ -31,6 +32,7 @@ class ForecastWeather3Hours(
     )
 
     /** 바람정보 */
+    @JsonDeserialize(using = WindCollection3HoursDeserializer::class)
     data class WindCollection(
         /** 풍향, 풍속 (발표시간+1시간) */
         val after1hour: Wind,
