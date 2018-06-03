@@ -8,7 +8,6 @@ import com.github.galcyurio.weathor.sk.weatherplanet.data.ForecastWeather3Hours
 import com.github.galcyurio.weathor.sk.weatherplanet.data.ForecastWeather3Hours.*
 import com.github.galcyurio.weathor.sk.weatherplanet.data.part.Common
 import com.github.galcyurio.weathor.sk.weatherplanet.data.part.Grid
-import com.github.galcyurio.weathor.sk.weatherplanet.data.part.Lightning
 import com.github.galcyurio.weathor.sk.weatherplanet.data.part.Result
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
@@ -84,7 +83,7 @@ class ForecastWeather3HoursDeserializerTest {
 
     @Test
     fun `Lightning 부분 역직렬화`() {
-        val actual = mapper.treeToValue<Lightning>(elementNode)
+        val actual = mapper.treeToValue<ForecastWeather3Hours>(rootNode).elements[0].lightning
         println(actual)
     }
 }
