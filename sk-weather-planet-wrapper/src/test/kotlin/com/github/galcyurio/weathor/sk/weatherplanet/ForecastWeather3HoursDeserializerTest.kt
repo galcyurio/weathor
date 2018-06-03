@@ -25,7 +25,7 @@ class ForecastWeather3HoursDeserializerTest {
     init {
         val stream = javaClass.classLoader.getResourceAsStream("mock/forecast-3hours.json")
         rootNode = mapper.readTree(stream)
-        elementNode = rootNode["weather"]["forecast3hours"]
+        elementNode = rootNode["weather"]["forecast3hours"][0]
     }
 
     @Test
@@ -48,19 +48,19 @@ class ForecastWeather3HoursDeserializerTest {
 
     @Test
     fun `Grid 부분 역직렬화`() {
-        val actual = mapper.treeToValue<Grid>(elementNode)
+        val actual = mapper.treeToValue<Grid>(elementNode["grid"])
         println(actual)
     }
 
     @Test
     fun `WindCollection 부분 역직렬화`() {
-        val actual = mapper.treeToValue<WindCollection>(elementNode)
+        val actual = mapper.treeToValue<WindCollection>(elementNode["wind"])
         println(actual)
     }
 
     @Test
     fun `PrecipitationCollection 부분 역직렬화`() {
-        val actual = mapper.treeToValue<PrecipitationCollection>(elementNode)
+        val actual = mapper.treeToValue<PrecipitationCollection>(elementNode["precipitation"])
         println(actual)
     }
 
