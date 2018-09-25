@@ -116,13 +116,13 @@ class ForecastWeather3Hours(
         /** 낙뢰 확률 (발표시간+1시간) */
         val after1hour: Lightning,
 
-        /** 낙뢰 확률 (발표시간+1시간) */
+        /** 낙뢰 확률 (발표시간+2시간) */
         val after2hour: Lightning,
 
-        /** 낙뢰 확률 (발표시간+1시간) */
+        /** 낙뢰 확률 (발표시간+3시간) */
         val after3hour: Lightning,
 
-        /** 낙뢰 확률 (발표시간+1시간) */
+        /** 낙뢰 확률 (발표시간+4시간) */
         val after4hour: Lightning? = null
     )
 }
