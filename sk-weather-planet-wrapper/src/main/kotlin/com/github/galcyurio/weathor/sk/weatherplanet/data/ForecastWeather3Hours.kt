@@ -1,5 +1,6 @@
 package com.github.galcyurio.weathor.sk.weatherplanet.data
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.github.galcyurio.weathor.sk.weatherplanet.data.part.*
@@ -22,8 +23,8 @@ class ForecastWeather3Hours(
         val wind: WindCollection,
         val precipitation: PrecipitationCollection,
         val sky: SkyCollection,
-        val temperature: Temperature,
-        val humidity: Humidity,
+        val temperature: TemperatureCollection,
+        val humidity: HumidityCollection,
         val lightning: LightningCollection,
 
         @JsonDeserialize(using = SkTimeDeserializer::class)
@@ -81,7 +82,7 @@ class ForecastWeather3Hours(
 
     /** 기온 정보 */
     @JsonDeserialize(using = Temperature3HoursDeserializer::class)
-    data class Temperature(
+    data class TemperatureCollection(
         /** 기온 (발표시간+1시간) */
         val after1hour: Float,
 
@@ -97,7 +98,7 @@ class ForecastWeather3Hours(
 
     /** 습도 정보 */
     @JsonDeserialize(using = Humidity3HoursDeserializer::class)
-    data class Humidity(
+    data class HumidityCollection(
         /** 상대습도 (발표시간+1시간) */
         val after1hour: Float,
 

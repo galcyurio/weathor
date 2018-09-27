@@ -50,14 +50,14 @@ class ForecastWeather3HoursDeserializerTest {
     }
 
     @Test
-    fun `Temperature 부분 역직렬화`() {
-        val actual = mapper.treeToValue<Temperature>(elementNode["temperature"])
+    fun `TemperatureCollection 부분 역직렬화`() {
+        val actual = mapper.treeToValue<TemperatureCollection>(elementNode["temperature"])
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after4hour")
     }
 
     @Test
-    fun `Humidity 부분 역직렬화`() {
-        val actual = mapper.treeToValue<Humidity>(elementNode["humidity"])
+    fun `HumidityCollection 부분 역직렬화`() {
+        val actual = mapper.treeToValue<HumidityCollection>(elementNode["humidity"])
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after4hour")
     }
 
