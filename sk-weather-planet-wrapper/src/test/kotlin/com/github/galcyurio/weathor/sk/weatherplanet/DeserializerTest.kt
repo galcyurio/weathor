@@ -1,36 +1,43 @@
 package com.github.galcyurio.weathor.sk.weatherplanet
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.github.galcyurio.weathor.sk.weatherplanet.data.CurrentWeatherHourly
 import com.github.galcyurio.weathor.sk.weatherplanet.data.CurrentWeatherMinutely
-import org.junit.Before
+import com.github.galcyurio.weathor.sk.weatherplanet.data.ForecastWeather3Hours
+import com.github.galcyurio.weathor.sk.weatherplanet.support.Injector
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
 /**
  * @author galcyurio
  */
 class DeserializerTest {
-    private lateinit var mapper: ObjectMapper
-
-    @Before
-    fun setUp() {
-        mapper = ObjectMapper().registerKotlinModule()
-    }
+    private val mapper: ObjectMapper = Injector.provideObjectMapper()
 
     @Test
-    fun `CurrentWeatherMinutely json 파일 역직렬화 테스트`() {
+    fun `CurrentWeatherMinutely json 파일 역직렬화`() {
         val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/current-weather-minutely.json")
-        val currentWeatherMinutely = mapper.readValue(inputStream, CurrentWeatherMinutely::class.java)
+        val actual = mapper.readValue(inputStream, CurrentWeatherMinutely::class.java)
 
-        println(currentWeatherMinutely)
+        assertThat(actual).hasNoNullFieldsOrProperties()
+        println(actual)
     }
 
     @Test
-    fun `CurrentWeatherHourly json 파일 역직렬화 테스트`() {
+    fun `CurrentWeatherHourly json 파일 역직렬화`() {
         val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/current-weather-hourly.json")
-        val currentWeatherHourly = mapper.readValue(inputStream, CurrentWeatherHourly::class.java)
+        val actual = mapper.readValue(inputStream, CurrentWeatherHourly::class.java)
 
-        println(currentWeatherHourly)
+        assertThat(actual).hasNoNullFieldsOrProperties()
+        println(actual)
+    }
+
+    @Test
+    fun `ForecastWeather3Hours json 파일 역직렬화`() {
+        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/forecast-3hours.json")
+        val actual = mapper.readValue(inputStream, ForecastWeather3Hours::class.java)
+
+        assertThat(actual).hasNoNullFieldsOrProperties()
+        println(actual)
     }
 }

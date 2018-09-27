@@ -10,7 +10,7 @@ import java.util.*
  * @author galcyurio
  */
 @JsonDeserialize(using = ForecastWeather3HoursDeserializer::class)
-class ForecastWeather3Hours(
+data class ForecastWeather3Hours(
     val elements: List<Element>,
     val common: Common,
     val result: Result

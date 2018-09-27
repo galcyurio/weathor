@@ -128,11 +128,4 @@ class ForecastWeather3HoursDeserializerTest {
         assertThat(actual).hasNoNullFieldsOrProperties()
     }
 
-    @Test
-    fun `ForecastWeather3Hours 전체 역직렬화`() {
-        val actual = mapper.treeToValue<ForecastWeather3Hours>(rootNode)
-        assertThat(actual).hasNoNullFieldsOrProperties()
-        println(actual)
-    }
-
 }
