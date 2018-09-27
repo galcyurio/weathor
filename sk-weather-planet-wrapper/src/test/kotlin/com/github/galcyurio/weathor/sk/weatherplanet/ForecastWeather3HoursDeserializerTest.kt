@@ -1,12 +1,11 @@
 package com.github.galcyurio.weathor.sk.weatherplanet
 
 import com.fasterxml.jackson.databind.JsonNode
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.fasterxml.jackson.module.kotlin.treeToValue
 import com.github.galcyurio.weathor.sk.weatherplanet.data.ForecastWeather3Hours
 import com.github.galcyurio.weathor.sk.weatherplanet.data.ForecastWeather3Hours.*
 import com.github.galcyurio.weathor.sk.weatherplanet.data.part.Grid
+import com.github.galcyurio.weathor.sk.weatherplanet.support.Injector
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
@@ -15,7 +14,7 @@ import org.junit.Test
  */
 class ForecastWeather3HoursDeserializerTest {
 
-    private val mapper = ObjectMapper().registerKotlinModule()
+    private val mapper = Injector.provideObjectMapper()
     private val rootNode: JsonNode
     private val elementNode: JsonNode
 

@@ -1,7 +1,6 @@
 package com.github.galcyurio.weathor.sk.weatherplanet
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import com.github.galcyurio.weathor.sk.weatherplanet.support.Injector
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -27,8 +26,7 @@ class SkWeatherPlanetClient private constructor(
         private var baseUrl: HttpUrl = HttpUrl.parse(WEATHER_PLANET_BASE_URL)!!
 
         fun build(): SkWeatherPlanetClient = SkWeatherPlanetClient(Retrofit.Builder()
-            .addConverterFactory(JacksonConverterFactory.create(ObjectMapper()
-                .registerKotlinModule()))
+            .addConverterFactory(JacksonConverterFactory.create(Injector.provideObjectMapper()))
             .baseUrl(baseUrl)
             .client(OkHttpClient.Builder()
                 .addInterceptor { chain ->
