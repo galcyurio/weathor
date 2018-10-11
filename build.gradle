@@ -20,7 +20,7 @@ buildscript {
     ]
 
     ext.deps = [
-            kotlinStdLib            : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}",
+            kotlinStdLib            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}",
 
             jackson                 : "com.fasterxml.jackson.core:jackson-databind:${versions.jackson}",
             jacksonModuleKotlin     : "com.fasterxml.jackson.module:jackson-module-kotlin:${versions.jackson}",
@@ -76,7 +76,7 @@ subprojects {
     integrationTest.mustRunAfter test
 
     compileKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = "1.6"
     }
     compileTestKotlin {
         kotlinOptions.jvmTarget = "1.8"
