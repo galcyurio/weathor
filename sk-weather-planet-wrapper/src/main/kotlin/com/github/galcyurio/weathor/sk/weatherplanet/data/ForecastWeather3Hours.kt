@@ -46,6 +46,12 @@ data class ForecastWeather3Hours(
     /** 강수정보 */
     @JsonDeserialize(using = PrecipitationCollection3HoursDeserializer::class)
     data class PrecipitationCollection(
+        /**
+         * - key: 발표시간
+         * - value: 강수정보
+         */
+        val data: Map<Int, Precipitation>,
+
         /** 강수정보 (발표시간+1시간) */
         val after1hour: Precipitation,
 

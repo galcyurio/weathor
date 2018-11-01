@@ -14,14 +14,24 @@ class PrecipitationCollection3HoursDeserializer
     : StdDeserializer<PrecipitationCollection>(PrecipitationCollection::class.java) {
     override fun deserialize(p: JsonParser, ctxt: DeserializationContext): PrecipitationCollection {
         val node = p.codec.readTree<JsonNode>(p)
-        val list = listOf(1, 2, 3, 4).mapNotNull {
-            val sinceOnTime = node["sinceOntime${it}hour"].textValue().toFloatOrNull() ?: return@mapNotNull null
-            val typeCode = node["type${it}hour"].intValue()
-            val type = Precipitation.Type.code(typeCode)
-            val unit = Precipitation.Unit.code(typeCode)
+        val map = listOf(1, 2, 3, 4)
+            .mapNotNull {
+                val sinceOnTime = node["sinceOntime${it}hour"].textValue().toFloatOrNull() ?: return@mapNotNull null
+                val typeCode = node["type${it}hour"].intValue()
+                val type = Precipitation.Type.code(typeCode)
+                val unit = Precipitation.Unit.code(typeCode)
 
-            Precipitation(sinceOnTime, unit, type)
-        }
-        return PrecipitationCollection(list[0], list[1], list[2], list.getOrNull(3))
+                it to Precipitation(sinceOnTime, unit, type)
+            }
+            .toMap()
+        val precipitations = map.values.toList()
+
+        return PrecipitationCollection(
+            data = map,
+            after1hour = precipitations[0],
+            after2hour = precipitations[1],
+            after3hour = precipitations[2],
+            after4hour = precipitations.getOrNull(3)
+        )
     }
 }
