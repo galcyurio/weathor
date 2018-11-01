@@ -30,6 +30,12 @@ data class ForecastWeather3Hours(
     /** 바람정보 */
     @JsonDeserialize(using = WindCollection3HoursDeserializer::class)
     data class WindCollection(
+        /**
+         * - key: 발표시간
+         * - value: 풍향, 풍속
+         */
+        val data: Map<Int, Wind>,
+
         /** 풍향, 풍속 (발표시간+1시간) */
         val after1hour: Wind,
 
@@ -46,6 +52,12 @@ data class ForecastWeather3Hours(
     /** 강수정보 */
     @JsonDeserialize(using = PrecipitationCollection3HoursDeserializer::class)
     data class PrecipitationCollection(
+        /**
+         * - key: 발표시간
+         * - value: 강수정보
+         */
+        val data: Map<Int, Precipitation>,
+
         /** 강수정보 (발표시간+1시간) */
         val after1hour: Precipitation,
 
@@ -84,6 +96,12 @@ data class ForecastWeather3Hours(
     /** 기온 정보 */
     @JsonDeserialize(using = TemperatureCollection3HoursDeserializer::class)
     data class TemperatureCollection(
+        /**
+         * - key: 발표시간
+         * - value: 기온
+         * */
+        val data: Map<Int, Float>,
+
         /** 기온 (발표시간+1시간) */
         val after1hour: Float,
 
@@ -100,6 +118,12 @@ data class ForecastWeather3Hours(
     /** 습도 정보 */
     @JsonDeserialize(using = HumidityCollection3HoursDeserializer::class)
     data class HumidityCollection(
+        /**
+         * - key: 발표시간
+         * - value: 상대습도
+         */
+        val data: Map<Int, Float>,
+
         /** 상대습도 (발표시간+1시간) */
         val after1hour: Float,
 
@@ -115,6 +139,12 @@ data class ForecastWeather3Hours(
 
     /** 낙뢰 정보 (관측소 5km 반경 내) */
     data class LightningCollection(
+        /**
+         * - key: 발표시간
+         * - value: 낙뢰 확률
+         */
+        val data: Map<Int, Lightning>,
+
         /** 낙뢰 확률 (발표시간+1시간) */
         val after1hour: Lightning,
 

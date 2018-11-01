@@ -45,7 +45,6 @@ class ForecastWeather3HoursDeserializerTest {
     @Test
     fun `SkyCollection 부분 역직렬화`() {
         val actual = mapper.treeToValue<SkyCollection>(elementNode["sky"])
-        assertThat(actual.data).hasSize(3)
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after4hour")
     }
 
@@ -62,12 +61,6 @@ class ForecastWeather3HoursDeserializerTest {
     }
 
     /* 전체 역직렬화 */
-
-    @Test
-    fun `ForecastWeather3Hours 전체 역직렬화 후 LightningCollection`() {
-        val actual = mapper.treeToValue<ForecastWeather3Hours>(rootNode).elements[0].lightning
-        assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after4hour")
-    }
 
     @Test
     fun `ForecastWeather3Hours 전체 역직렬화 후 Common`() {
@@ -90,36 +83,42 @@ class ForecastWeather3HoursDeserializerTest {
     @Test
     fun `ForecastWeather3Hours 전체 역직렬화 후 Element#WindCollection`() {
         val actual = mapper.treeToValue<ForecastWeather3Hours>(rootNode).elements[0].wind
+        assertThat(actual.data).hasSize(3)
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after4hour")
     }
 
     @Test
     fun `ForecastWeather3Hours 전체 역직렬화 후 Element#PrecipitationCollection`() {
         val actual = mapper.treeToValue<ForecastWeather3Hours>(rootNode).elements[0].precipitation
+        assertThat(actual.data).hasSize(3)
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after4hour")
     }
 
     @Test
     fun `ForecastWeather3Hours 전체 역직렬화 후 Element#SkyCollection`() {
         val actual = mapper.treeToValue<ForecastWeather3Hours>(rootNode).elements[0].sky
+        assertThat(actual.data).hasSize(3)
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after4hour")
     }
 
     @Test
     fun `ForecastWeather3Hours 전체 역직렬화 후 Element#Temperature`() {
         val actual = mapper.treeToValue<ForecastWeather3Hours>(rootNode).elements[0].temperature
+        assertThat(actual.data).hasSize(3)
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after4hour")
     }
 
     @Test
     fun `ForecastWeather3Hours 전체 역직렬화 후 Element#Humidity`() {
         val actual = mapper.treeToValue<ForecastWeather3Hours>(rootNode).elements[0].humidity
+        assertThat(actual.data).hasSize(3)
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after4hour")
     }
 
     @Test
     fun `ForecastWeather3Hours 전체 역직렬화 후 Element#LightningCollection`() {
         val actual = mapper.treeToValue<ForecastWeather3Hours>(rootNode).elements[0].lightning
+        assertThat(actual.data).hasSize(3)
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after4hour")
     }
 

@@ -13,9 +13,19 @@ class TemperatureCollection3HoursDeserializer
     : StdDeserializer<TemperatureCollection>(TemperatureCollection::class.java) {
     override fun deserialize(p: JsonParser, ctxt: DeserializationContext): TemperatureCollection {
         val node = p.codec.readTree<JsonNode>(p)
-        val list = listOf(1, 2, 3, 4).mapNotNull {
-            node["temp${it}hour"].textValue().toFloatOrNull()
-        }
-        return TemperatureCollection(list[0], list[1], list[2], list.getOrNull(3))
+        val map = listOf(1, 2, 3, 4)
+            .map { it to node["temp${it}hour"].textValue() }
+            .filter { (_, rawTemperature) -> rawTemperature.isNotEmpty() }
+            .map { (hour, rawTemperature) -> hour to rawTemperature.toFloat() }
+            .toMap()
+        val temperatures = map.values.toList()
+
+        return TemperatureCollection(
+            data = map,
+            after1hour = temperatures[0],
+            after2hour = temperatures[1],
+            after3hour = temperatures[2],
+            after4hour = temperatures.getOrNull(3)
+        )
     }
 }
