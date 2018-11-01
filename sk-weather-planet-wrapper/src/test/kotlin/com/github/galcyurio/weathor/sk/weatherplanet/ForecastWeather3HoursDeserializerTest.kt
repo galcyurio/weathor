@@ -118,6 +118,7 @@ class ForecastWeather3HoursDeserializerTest {
     @Test
     fun `ForecastWeather3Hours 전체 역직렬화 후 Element#LightningCollection`() {
         val actual = mapper.treeToValue<ForecastWeather3Hours>(rootNode).elements[0].lightning
+        assertThat(actual.data).hasSize(3)
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after4hour")
     }
 

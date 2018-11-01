@@ -45,17 +45,20 @@ class ForecastWeather3HoursDeserializer
     }
 
     internal fun nodeToLightningCollection(node: JsonNode): LightningCollection {
-        val lightningList = listOf(1, 2, 3, 4)
+        val map = listOf(1, 2, 3, 4)
             .mapNotNull {
                 val code = node.get("lightning${it}hour").textValue().toIntOrNull() ?: return@mapNotNull null
-                Lightning.code(code)
+                it to Lightning.code(code)
             }
+            .toMap()
+        val lightnings = map.values.toList()
 
         return LightningCollection(
-            lightningList[0],
-            lightningList[1],
-            lightningList[2],
-            lightningList.getOrNull(3)
+            data = map,
+            after1hour = lightnings[0],
+            after2hour = lightnings[1],
+            after3hour = lightnings[2],
+            after4hour = lightnings.getOrNull(3)
         )
     }
 }

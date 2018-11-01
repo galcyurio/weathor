@@ -139,6 +139,12 @@ data class ForecastWeather3Hours(
 
     /** 낙뢰 정보 (관측소 5km 반경 내) */
     data class LightningCollection(
+        /**
+         * - key: 발표시간
+         * - value: 낙뢰 확률
+         */
+        val data: Map<Int, Lightning>,
+
         /** 낙뢰 확률 (발표시간+1시간) */
         val after1hour: Lightning,
 
