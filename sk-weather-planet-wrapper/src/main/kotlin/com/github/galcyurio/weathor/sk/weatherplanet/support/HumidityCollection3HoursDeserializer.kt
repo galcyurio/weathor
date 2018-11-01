@@ -13,9 +13,20 @@ class HumidityCollection3HoursDeserializer
     : StdDeserializer<HumidityCollection>(HumidityCollection::class.java) {
     override fun deserialize(p: JsonParser, ctxt: DeserializationContext): HumidityCollection {
         val node = p.codec.readTree<JsonNode>(p)
-        val list = listOf(1, 2, 3, 4).mapNotNull {
-            node["rh${it}hour"].textValue().toFloatOrNull()
-        }
-        return HumidityCollection(list[0], list[1], list[2], list.getOrNull(3))
+        val map = listOf(1, 2, 3, 4)
+            .map { it to node["rh${it}hour"].textValue() }
+            .filter { (_, rawHumidity) -> rawHumidity.isNotEmpty() }
+            .map { (hour, rawHumidity) -> hour to rawHumidity.toFloat() }
+            .toMap()
+
+        val list = map.values.toList()
+
+        return HumidityCollection(
+            data = map,
+            after1hour = list[0],
+            after2hour = list[1],
+            after3hour = list[2],
+            after4hour = list.getOrNull(3)
+        )
     }
 }

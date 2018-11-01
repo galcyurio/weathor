@@ -59,6 +59,7 @@ class ForecastWeather3HoursDeserializerTest {
     @Test
     fun `HumidityCollection 부분 역직렬화`() {
         val actual = mapper.treeToValue<HumidityCollection>(elementNode["humidity"])
+        assertThat(actual.data).hasSize(3)
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after4hour")
     }
 

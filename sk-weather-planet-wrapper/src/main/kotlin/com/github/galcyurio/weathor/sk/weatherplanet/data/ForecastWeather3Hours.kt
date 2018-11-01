@@ -106,6 +106,12 @@ data class ForecastWeather3Hours(
     /** 습도 정보 */
     @JsonDeserialize(using = HumidityCollection3HoursDeserializer::class)
     data class HumidityCollection(
+        /**
+         * - key: 발표시간
+         * - value: 상대습도
+         */
+        val data: Map<Int, Float>,
+
         /** 상대습도 (발표시간+1시간) */
         val after1hour: Float,
 
