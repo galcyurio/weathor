@@ -30,6 +30,12 @@ data class ForecastWeather3Hours(
     /** 바람정보 */
     @JsonDeserialize(using = WindCollection3HoursDeserializer::class)
     data class WindCollection(
+        /**
+         * - key: 발표시간
+         * - value: 풍향, 풍속
+         */
+        val data: Map<Int, Wind>,
+
         /** 풍향, 풍속 (발표시간+1시간) */
         val after1hour: Wind,
 

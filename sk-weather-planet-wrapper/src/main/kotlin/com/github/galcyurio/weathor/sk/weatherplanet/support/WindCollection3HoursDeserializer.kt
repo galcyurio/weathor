@@ -15,11 +15,21 @@ class WindCollection3HoursDeserializer
 
     override fun deserialize(p: JsonParser, ctxt: DeserializationContext): WindCollection {
         val node = p.codec.readTree<JsonNode>(p)
-        val list = listOf(1, 2, 3, 4).mapNotNull {
-            val direction = node["wdir${it}hour"].textValue().toFloatOrNull() ?: return@mapNotNull null
-            val speed = node["wspd${it}hour"].floatValue()
-            Wind(direction, speed)
-        }
-        return WindCollection(list[0], list[1], list[2], list.getOrNull(3))
+        val map = listOf(1, 2, 3, 4)
+            .mapNotNull {
+                val direction = node["wdir${it}hour"].textValue().toFloatOrNull() ?: return@mapNotNull null
+                val speed = node["wspd${it}hour"].floatValue()
+                it to Wind(direction, speed)
+            }
+            .toMap()
+        val list = map.values.toList()
+
+        return WindCollection(
+            data = map,
+            after1hour = list[0],
+            after2hour = list[1],
+            after3hour = list[2],
+            after4hour = list.getOrNull(3)
+        )
     }
 }
