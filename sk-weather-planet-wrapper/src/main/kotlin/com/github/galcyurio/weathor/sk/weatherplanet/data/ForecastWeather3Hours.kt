@@ -84,6 +84,12 @@ data class ForecastWeather3Hours(
     /** 기온 정보 */
     @JsonDeserialize(using = TemperatureCollection3HoursDeserializer::class)
     data class TemperatureCollection(
+        /**
+         * - key: 발표시간
+         * - value: 기온
+         * */
+        val data: Map<Int, Float>,
+
         /** 기온 (발표시간+1시간) */
         val after1hour: Float,
 
