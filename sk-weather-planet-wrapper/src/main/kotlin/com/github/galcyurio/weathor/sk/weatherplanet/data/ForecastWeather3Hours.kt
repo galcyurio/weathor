@@ -62,6 +62,12 @@ data class ForecastWeather3Hours(
     /** 하늘상태 정보 */
     @JsonDeserialize(using = SkyCollection3HoursDeserializer::class)
     data class SkyCollection(
+        /**
+         * - key: 발표시간
+         * - value: [Sky] Enum 객체
+         * */
+        val data: Map<Int, Sky>,
+
         /** 하늘상태 (발표시간+1시간) */
         val after1hour: Sky,
 

@@ -45,6 +45,7 @@ class ForecastWeather3HoursDeserializerTest {
     @Test
     fun `SkyCollection 부분 역직렬화`() {
         val actual = mapper.treeToValue<SkyCollection>(elementNode["sky"])
+        assertThat(actual.data).hasSize(3)
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after4hour")
     }
 

@@ -14,11 +14,19 @@ class SkyCollection3HoursDeserializer
     : StdDeserializer<SkyCollection>(SkyCollection::class.java) {
     override fun deserialize(p: JsonParser, ctxt: DeserializationContext): SkyCollection {
         val node = p.codec.readTree<JsonNode>(p)
-        val list = listOf(1, 2, 3, 4).mapNotNull {
-            val code = node["code${it}hour"].textValue()
-            if (code.isEmpty()) return@mapNotNull null
-            Sky.valueOf(code)
-        }
-        return SkyCollection(list[0], list[1], list[2], list.getOrNull(3))
+        val map = listOf(1, 2, 3, 4)
+            .map { it to node["code${it}hour"].textValue() }
+            .filterNot { (_, code) -> code.isNullOrEmpty() }
+            .map { (hour, code) -> hour to Sky.valueOf(code) }
+            .toMap()
+        val list = map.values.toList()
+
+        return SkyCollection(
+            data = map,
+            after1hour = list[0],
+            after2hour = list[1],
+            after3hour = list[2],
+            after4hour = list.getOrNull(3)
+        )
     }
 }
