@@ -6,6 +6,7 @@ import com.github.galcyurio.weathor.sk.weatherplanet.data.part.*
 import com.github.galcyurio.weathor.sk.weatherplanet.support.*
 import java.util.*
 
+@JsonDeserialize(using = ForecastWeather3DaysDeserializer::class)
 data class ForecastWeather3Days(
     val elements: List<Element>,
     val common: Common,
