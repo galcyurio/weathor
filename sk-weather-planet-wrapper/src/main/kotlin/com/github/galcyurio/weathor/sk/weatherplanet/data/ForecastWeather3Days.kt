@@ -12,6 +12,7 @@ data class ForecastWeather3Days(
     val result: Result
 ) {
 
+    @JsonDeserialize(using = Element3DaysDeserializer::class)
     data class Element(
         val grid: Grid,
         val releaseTime: Date,
