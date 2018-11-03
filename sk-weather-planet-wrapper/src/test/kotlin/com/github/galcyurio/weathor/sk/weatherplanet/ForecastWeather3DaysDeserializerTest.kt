@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.module.kotlin.treeToValue
 import com.github.galcyurio.weathor.sk.weatherplanet.data.ForecastWeather3Days
 import com.github.galcyurio.weathor.sk.weatherplanet.data.ForecastWeather3Days.*
+import com.github.galcyurio.weathor.sk.weatherplanet.data.part.Precipitation
 import com.github.galcyurio.weathor.sk.weatherplanet.support.Injector
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
@@ -53,6 +54,10 @@ class ForecastWeather3DaysDeserializerTest {
     fun `PrecipitationProbabilityCollection 부분 역직렬화`() {
         val actual: PrecipitationProbabilityCollection = mapper.treeToValue(fcst3hourNode["precipitation"])
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after67hour")
+
+        assertThat(actual.after67hour).isNull()
+        assertThat(actual.after58hour.type).isEqualTo(Precipitation.Type.RAIN)
+        assertThat(actual.after58hour.percentage).isEqualTo(60)
     }
 
     @Test
