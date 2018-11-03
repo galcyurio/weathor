@@ -5,6 +5,7 @@ import com.fasterxml.jackson.module.kotlin.treeToValue
 import com.github.galcyurio.weathor.sk.weatherplanet.data.ForecastWeather3Days
 import com.github.galcyurio.weathor.sk.weatherplanet.data.ForecastWeather3Days.*
 import com.github.galcyurio.weathor.sk.weatherplanet.data.part.Precipitation
+import com.github.galcyurio.weathor.sk.weatherplanet.data.part.Sky
 import com.github.galcyurio.weathor.sk.weatherplanet.support.Injector
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
@@ -48,6 +49,9 @@ class ForecastWeather3DaysDeserializerTest {
     fun `WindCollection 부분 역직렬화`() {
         val actual: WindCollection = mapper.treeToValue(fcst3hourNode["wind"])
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after67hour")
+
+        assertThat(actual.after4hour.direction).isEqualTo(248.00f)
+        assertThat(actual.after4hour.speed).isEqualTo(1.60f)
     }
 
     @Test
@@ -64,35 +68,42 @@ class ForecastWeather3DaysDeserializerTest {
     fun `SkyCollection 부분 역직렬화`() {
         val actual: SkyCollection = mapper.treeToValue(fcst3hourNode["sky"])
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after67hour")
+        assertThat(actual.after19hour).isEqualTo(Sky.SKY_S02)
     }
 
     @Test
     fun `TemperatureCollection 부분 역직렬화`() {
         val actual: TemperatureCollection = mapper.treeToValue(fcst3hourNode["temperature"])
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after67hour")
+        assertThat(actual.after4hour).isEqualTo(27.00f)
     }
 
     @Test
     fun `HumidityCollection 부분 역직렬화`() {
         val actual: HumidityCollection = mapper.treeToValue(fcst3hourNode["humidity"])
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after67hour")
+        assertThat(actual.after4hour).isEqualTo(35.00f)
     }
 
     @Test
     fun `RainCollection 부분 역직렬화`() {
         val actual: RainCollection = mapper.treeToValue(fcst6hourNode)
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept()
+        assertThat(actual.after60hour).isEqualTo(Rain.BETWEEN_1_4_MM)
     }
 
     @Test
     fun `SnowCollection 부분 역직렬화`() {
         val actual: SnowCollection = mapper.treeToValue(fcst6hourNode)
         assertThat(actual).hasNoNullFieldsOrProperties()
+        assertThat(actual.after6hour).isEqualTo(Snow.NONE)
     }
 
     @Test
     fun `TemperatureMinMaxCollection 부분 역직렬화`() {
         val actual: TemperatureMinMaxCollection = mapper.treeToValue(fcstDailyNode["temperature"])
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("min1day", "max1day")
+        assertThat(actual.min1day).isNull()
+        assertThat(actual.max1day).isEqualTo(30.00f)
     }
 }
