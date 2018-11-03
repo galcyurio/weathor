@@ -2,10 +2,7 @@ package com.github.galcyurio.weathor.sk.weatherplanet.data
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.github.galcyurio.weathor.sk.weatherplanet.data.part.*
-import com.github.galcyurio.weathor.sk.weatherplanet.support.PrecipitationProbabilityCollection3DaysDeserializer
-import com.github.galcyurio.weathor.sk.weatherplanet.support.SkyCollection3DaysDeserializer
-import com.github.galcyurio.weathor.sk.weatherplanet.support.TemperatureCollection3DaysDeserializer
-import com.github.galcyurio.weathor.sk.weatherplanet.support.WindCollection3DaysDeserializer
+import com.github.galcyurio.weathor.sk.weatherplanet.support.*
 import java.util.*
 
 data class ForecastWeather3Days(
@@ -164,6 +161,7 @@ data class ForecastWeather3Days(
     )
 
     /** 습도 정보 */
+    @JsonDeserialize(using = HumidityCollection3DaysDeserializer::class)
     data class HumidityCollection(
         /**
          * - key: 발표시간
