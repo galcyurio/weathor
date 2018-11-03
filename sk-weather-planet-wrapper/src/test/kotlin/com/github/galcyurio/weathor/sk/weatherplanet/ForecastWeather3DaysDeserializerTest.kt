@@ -57,7 +57,7 @@ class ForecastWeather3DaysDeserializerTest {
 
         assertThat(actual.after67hour).isNull()
         assertThat(actual.after58hour.type).isEqualTo(Precipitation.Type.RAIN)
-        assertThat(actual.after58hour.percentage).isEqualTo(60)
+        assertThat(actual.after58hour.percentage).isEqualTo(60f)
     }
 
     @Test

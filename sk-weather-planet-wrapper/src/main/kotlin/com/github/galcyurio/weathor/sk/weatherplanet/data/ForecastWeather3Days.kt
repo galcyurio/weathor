@@ -2,6 +2,7 @@ package com.github.galcyurio.weathor.sk.weatherplanet.data
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.github.galcyurio.weathor.sk.weatherplanet.data.part.*
+import com.github.galcyurio.weathor.sk.weatherplanet.support.PrecipitationProbabilityCollection3DaysDeserializer
 import com.github.galcyurio.weathor.sk.weatherplanet.support.WindCollection3DaysDeserializer
 import java.util.*
 
@@ -60,6 +61,7 @@ data class ForecastWeather3Days(
     )
 
     /** 강수 확률 정보 */
+    @JsonDeserialize(using = PrecipitationProbabilityCollection3DaysDeserializer::class)
     data class PrecipitationProbabilityCollection(
         /**
          * - key: 발표시간
@@ -92,7 +94,7 @@ data class ForecastWeather3Days(
 
     data class PrecipitationProbability(
         val type: Precipitation.Type,
-        val percentage: Int
+        val percentage: Float
     )
 
     /** 하늘상태 정보 */
