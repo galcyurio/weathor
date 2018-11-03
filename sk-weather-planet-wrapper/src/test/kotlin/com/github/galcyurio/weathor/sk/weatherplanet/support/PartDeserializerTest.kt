@@ -49,15 +49,6 @@ class PartDeserializerTest {
     }
 
     @Test
-    fun `Rain json 파일 역직렬화`() {
-        val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/part/rain.json")
-        val rain = mapper.readValue(inputStream, Rain::class.java)
-
-        println(rain)
-        assertThat(rain).isNotNull()
-    }
-
-    @Test
     fun `Pressure json 파일 역직렬화`() {
         val inputStream = this.javaClass.classLoader.getResourceAsStream("mock/part/pressure.json")
         val pressure = mapper.readValue(inputStream, Pressure::class.java)
