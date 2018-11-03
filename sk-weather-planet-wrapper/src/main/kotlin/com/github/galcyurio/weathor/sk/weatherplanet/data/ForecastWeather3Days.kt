@@ -212,6 +212,7 @@ data class ForecastWeather3Days(
     )
 
     /** 6시간 신 적설량 */
+    @JsonDeserialize(using = SnowCollection3DaysDeserializer::class)
     data class SnowCollection(
         val data: Map<Int, Snow>,
         val after6hour: Snow,
