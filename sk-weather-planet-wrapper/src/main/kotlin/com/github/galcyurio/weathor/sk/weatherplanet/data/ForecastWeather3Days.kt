@@ -195,6 +195,7 @@ data class ForecastWeather3Days(
     /* ============================= 6시간 ============================= */
 
     /** 누적 강우량 */
+    @JsonDeserialize(using = RainCollection3DaysDeserializer::class)
     data class RainCollection(
         val data: Map<Int, Rain>,
         val after6hour: Rain,
