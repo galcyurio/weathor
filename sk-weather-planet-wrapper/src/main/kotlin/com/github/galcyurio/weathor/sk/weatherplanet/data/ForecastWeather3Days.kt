@@ -1,6 +1,8 @@
 package com.github.galcyurio.weathor.sk.weatherplanet.data
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.github.galcyurio.weathor.sk.weatherplanet.data.part.*
+import com.github.galcyurio.weathor.sk.weatherplanet.support.WindCollection3DaysDeserializer
 import java.util.*
 
 data class ForecastWeather3Days(
@@ -26,6 +28,7 @@ data class ForecastWeather3Days(
     /* ============================= 3시간 ============================= */
 
     /** 바람 정보 */
+    @JsonDeserialize(using = WindCollection3DaysDeserializer::class)
     data class WindCollection(
         /**
          * - key: 발표시간
