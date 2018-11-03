@@ -1,5 +1,6 @@
 package com.github.galcyurio.weathor.sk.weatherplanet.data
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.github.galcyurio.weathor.sk.weatherplanet.data.part.*
 import com.github.galcyurio.weathor.sk.weatherplanet.support.*
@@ -252,21 +253,21 @@ data class ForecastWeather3Days(
 
     data class TemperatureMinMaxCollection(
         /** 일 최저기온(오늘) */
-        val min1day: Int?,
+        @JsonProperty("tmin1day") val min1day: Float?,
 
         /** 일 최고기온(오늘) */
-        val max1day: Int?,
+        @JsonProperty("tmax1day") val max1day: Float?,
 
         /** 일 최저기온(내일) */
-        val min2day: Int,
+        @JsonProperty("tmin2day") val min2day: Float,
 
         /** 일 최고기온(내일) */
-        val max2day: Int,
+        @JsonProperty("tmax2day") val max2day: Float,
 
         /** 일 최저기온(모레) */
-        val min3day: Int,
+        @JsonProperty("tmin3day") val min3day: Float,
 
         /** 일 최고기온(모레) */
-        val max3day: Int
+        @JsonProperty("tmax3day") val max3day: Float
     )
 }
