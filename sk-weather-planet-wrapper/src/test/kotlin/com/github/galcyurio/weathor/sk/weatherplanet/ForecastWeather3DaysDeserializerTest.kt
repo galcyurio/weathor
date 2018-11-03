@@ -50,8 +50,8 @@ class ForecastWeather3DaysDeserializerTest {
     }
 
     @Test
-    fun `PrecipitationCollection 부분 역직렬화`() {
-        val actual: PrecipitationCollection = mapper.treeToValue(fcst3hourNode["precipitation"])
+    fun `PrecipitationProbabilityCollection 부분 역직렬화`() {
+        val actual: PrecipitationProbabilityCollection = mapper.treeToValue(fcst3hourNode["precipitation"])
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after67hour")
     }
 

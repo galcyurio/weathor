@@ -16,7 +16,7 @@ data class ForecastWeather3Days(
         val releaseTime: Date,
 
         val wind: WindCollection,
-        val precipitation: PrecipitationCollection,
+        val precipitation: PrecipitationProbabilityCollection,
         val sky: SkyCollection,
         val temperature: TemperatureCollection,
         val humidity: HumidityCollection,
@@ -59,35 +59,40 @@ data class ForecastWeather3Days(
         val after67hour: Wind?
     )
 
-    /** 강수 정보 */
-    data class PrecipitationCollection(
+    /** 강수 확률 정보 */
+    data class PrecipitationProbabilityCollection(
         /**
          * - key: 발표시간
-         * - value: 강수정보
+         * - value: 강수 확률 정보
          */
-        val data: Map<Int, Precipitation>,
-        val after4hour: Precipitation,
-        val after7hour: Precipitation,
-        val after10hour: Precipitation,
-        val after13hour: Precipitation,
-        val after16hour: Precipitation,
-        val after19hour: Precipitation,
-        val after22hour: Precipitation,
-        val after25hour: Precipitation,
-        val after28hour: Precipitation,
-        val after31hour: Precipitation,
-        val after34hour: Precipitation,
-        val after37hour: Precipitation,
-        val after40hour: Precipitation,
-        val after43hour: Precipitation,
-        val after46hour: Precipitation,
-        val after49hour: Precipitation,
-        val after52hour: Precipitation,
-        val after55hour: Precipitation,
-        val after58hour: Precipitation,
-        val after61hour: Precipitation,
-        val after64hour: Precipitation,
-        val after67hour: Precipitation?
+        val data: Map<Int, PrecipitationProbability>,
+        val after4hour: PrecipitationProbability,
+        val after7hour: PrecipitationProbability,
+        val after10hour: PrecipitationProbability,
+        val after13hour: PrecipitationProbability,
+        val after16hour: PrecipitationProbability,
+        val after19hour: PrecipitationProbability,
+        val after22hour: PrecipitationProbability,
+        val after25hour: PrecipitationProbability,
+        val after28hour: PrecipitationProbability,
+        val after31hour: PrecipitationProbability,
+        val after34hour: PrecipitationProbability,
+        val after37hour: PrecipitationProbability,
+        val after40hour: PrecipitationProbability,
+        val after43hour: PrecipitationProbability,
+        val after46hour: PrecipitationProbability,
+        val after49hour: PrecipitationProbability,
+        val after52hour: PrecipitationProbability,
+        val after55hour: PrecipitationProbability,
+        val after58hour: PrecipitationProbability,
+        val after61hour: PrecipitationProbability,
+        val after64hour: PrecipitationProbability,
+        val after67hour: PrecipitationProbability?
+    )
+
+    data class PrecipitationProbability(
+        val type: Precipitation.Type,
+        val percentage: Int
     )
 
     /** 하늘상태 정보 */
