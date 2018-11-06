@@ -54,6 +54,7 @@ allprojects {
 subprojects {
     apply plugin: 'kotlin'
     apply plugin: 'org.unbroken-dome.test-sets'
+    apply plugin: 'idea'
 
     repositories {
         jcenter()
@@ -67,6 +68,13 @@ subprojects {
 
     testSets {
         integrationTest
+    }
+
+    idea {
+        module {
+            testSourceDirs += file("src/integrationTest/kotlin")
+            testSourceDirs += file("src/integrationTest/java")
+        }
     }
 
     compileIntegrationTestJava.options.encoding = "UTF-8"
