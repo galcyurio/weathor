@@ -16,6 +16,9 @@ class SkWeatherPlanetClientTest {
     private lateinit var server: MockWebServer
     private lateinit var response: MockResponse
 
+    private val readJson: (String) -> String = { javaClass.classLoader.getResource(it).readText() }
+    private val currentWeatherMinutelyJson = readJson("mock/current-weather-minutely.json")
+
     @Before
     fun setUp() {
         server = MockWebServer()
@@ -35,5 +38,17 @@ class SkWeatherPlanetClientTest {
     @Test
     fun `SkWeatherPlanetClient 초기화`() {
         assertThat(client).isNotNull()
+    }
+
+    @Test
+    fun `currentMinutely 호출`() {
+        response.setBody(currentWeatherMinutelyJson)
+        server.enqueue(response)
+
+        val actual1 = client.currentMinutely(1.0, 1.0).execute().body()
+        val actual2 = client.currentMinutely("", "", "").execute().body()
+        val actual3 = client.currentMinutely(1).execute().body()
+
+        assertThat(arrayOf(actual1, actual2, actual3)).doesNotContainNull()
     }
 }
