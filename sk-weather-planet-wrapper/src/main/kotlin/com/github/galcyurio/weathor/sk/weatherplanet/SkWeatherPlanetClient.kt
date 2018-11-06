@@ -8,13 +8,15 @@ import com.github.galcyurio.weathor.sk.weatherplanet.support.Injector
  * @author galcyurio
  */
 class SkWeatherPlanetClient private constructor(
-    val request: WeatherPlanetRequest
-) {
+    private val request: WeatherPlanetRequest
+) : WeatherPlanetRequest by request {
+
     companion object {
         /**
          * SK planet 서비스의 Location API 중 [Weather Planet](https://developers.sktelecom.com/content/sktApi/view/?svcId=10113)의 `baseUrl`이다.
          */
         const val WEATHER_PLANET_BASE_URL = "https://api2.sktelecom.com/weather/"
+        const val API_VERSION = 2
     }
 
     class Builder {
