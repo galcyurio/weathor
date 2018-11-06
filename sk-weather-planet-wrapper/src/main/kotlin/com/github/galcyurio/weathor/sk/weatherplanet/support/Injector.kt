@@ -20,12 +20,14 @@ internal object Injector {
                 .addDeserializer(Date::class.java, SkTimeDeserializer()))
     }
 
-    fun provideOkHttpClient(apiKey: String): OkHttpClient{
+    fun provideOkHttpClient(apiKey: String): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor { chain ->
-                chain.proceed(chain.request().newBuilder()
-                    .addHeader("TDCProjectKey", apiKey)
-                    .build())
+                val request = chain.request()
+                val newUrl = request.url().newBuilder()
+                    .addQueryParameter("appKey", apiKey)
+                    .build()
+                chain.proceed(request.newBuilder().url(newUrl).build())
             }
             .build()
     }
