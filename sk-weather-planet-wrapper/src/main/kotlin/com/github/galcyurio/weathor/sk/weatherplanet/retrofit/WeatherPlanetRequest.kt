@@ -1,6 +1,7 @@
 package com.github.galcyurio.weathor.sk.weatherplanet.retrofit
 
 import com.github.galcyurio.weathor.sk.weatherplanet.SkWeatherPlanetClient
+import com.github.galcyurio.weathor.sk.weatherplanet.data.CurrentWeatherHourly
 import com.github.galcyurio.weathor.sk.weatherplanet.data.CurrentWeatherMinutely
 import retrofit2.Call
 import retrofit2.http.GET
@@ -30,4 +31,19 @@ interface WeatherPlanetRequest {
         @Query("stnid") stnId: Int,
         @Query("version") version: Int = SkWeatherPlanetClient.API_VERSION
     ): Call<CurrentWeatherMinutely>
+
+    @GET("current/hourly")
+    fun currentHourly(
+        @Query("lat") latitude: Double,
+        @Query("lon") longitude: Double,
+        @Query("version") version: Int = SkWeatherPlanetClient.API_VERSION
+    ): Call<CurrentWeatherHourly>
+
+    @GET("current/hourly")
+    fun currentHourly(
+        @Query("city") city: String,
+        @Query("county") county: String,
+        @Query("village") village: String,
+        @Query("version") version: Int = SkWeatherPlanetClient.API_VERSION
+    ): Call<CurrentWeatherHourly>
 }
