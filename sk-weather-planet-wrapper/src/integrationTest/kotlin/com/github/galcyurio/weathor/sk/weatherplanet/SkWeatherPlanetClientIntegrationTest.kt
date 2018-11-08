@@ -76,4 +76,16 @@ class SkWeatherPlanetClientIntegrationTest {
         val actual = client.forecast3Hours(city, county, village).execute().body()
         assertThat(actual).isNotNull()
     }
+
+    @Test
+    fun `위경도로 forecast3Days() 호출`() {
+        val actual = client.forecast3Days(latitude, longitude).execute().body()
+        assertThat(actual).isNotNull()
+    }
+
+    @Test
+    fun `주소로 forecast3Days() 호출`() {
+        val actual = client.forecast3Days(city, county, village).execute().body()
+        assertThat(actual).isNotNull()
+    }
 }
