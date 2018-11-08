@@ -1,46 +1,39 @@
 package com.github.galcyurio.weathor.sk.weatherplanet
 
+import com.github.galcyurio.weathor.sk.weatherplanet.retrofit.WeatherPlanetRequest
+import com.github.galcyurio.weathor.sk.weatherplanet.support.EmptyApiKeyException
 import com.github.galcyurio.weathor.sk.weatherplanet.support.Injector
-import okhttp3.HttpUrl
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.jackson.JacksonConverterFactory
 
 /**
  * @author galcyurio
  */
 class SkWeatherPlanetClient private constructor(
-    val retrofit: Retrofit
-) {
+    private val request: WeatherPlanetRequest
+) : WeatherPlanetRequest by request {
+
     companion object {
         /**
          * SK planet 서비스의 Location API 중 [Weather Planet](https://developers.sktelecom.com/content/sktApi/view/?svcId=10113)의 `baseUrl`이다.
          */
         const val WEATHER_PLANET_BASE_URL = "https://api2.sktelecom.com/weather/"
+        const val API_VERSION = 2
     }
-
-    
 
     class Builder {
         private var apiKey: String? = null
-        private var baseUrl: HttpUrl = HttpUrl.parse(WEATHER_PLANET_BASE_URL)!!
+        private var baseUrl: String = WEATHER_PLANET_BASE_URL
 
-        fun build(): SkWeatherPlanetClient = SkWeatherPlanetClient(Retrofit.Builder()
-            .addConverterFactory(JacksonConverterFactory.create(Injector.provideObjectMapper()))
-            .baseUrl(baseUrl)
-            .client(OkHttpClient.Builder()
-                .addInterceptor { chain ->
-                    chain.proceed(chain.request().newBuilder()
-                        .addHeader("TDCProjectKey", apiKey!!)
-                        .build())
-                }
-                .build()
-            )
-            .build())
+        fun build(): SkWeatherPlanetClient {
+            val retrofit = Injector.provideRetrofit(
+                apiKey = apiKey ?: throw EmptyApiKeyException(),
+                baseUrl = baseUrl)
+            val request = retrofit.create(WeatherPlanetRequest::class.java)
+            return SkWeatherPlanetClient(request)
+        }
 
         fun apiKey(apiKey: String): Builder = apply { this.apiKey = apiKey }
 
-        fun baseUrl(baseUrl: HttpUrl): Builder = apply { this.baseUrl = baseUrl }
+        fun baseUrl(baseUrl: String): Builder = apply { this.baseUrl = baseUrl }
     }
 
 }
