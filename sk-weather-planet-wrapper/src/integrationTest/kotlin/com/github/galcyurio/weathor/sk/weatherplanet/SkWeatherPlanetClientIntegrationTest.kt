@@ -52,4 +52,16 @@ class SkWeatherPlanetClientIntegrationTest {
         val actual = client.currentMinutely(stnid).execute().body()
         assertThat(actual).isNotNull()
     }
+
+    @Test
+    fun `위경도로 currentHourly() 호출`() {
+        val actual = client.currentHourly(latitude, longitude).execute().body()
+        assertThat(actual).isNotNull()
+    }
+
+    @Test
+    fun `주소로 currentHourly() 호출`() {
+        val actual = client.currentHourly(city, county, village).execute().body()
+        assertThat(actual).isNotNull()
+    }
 }
