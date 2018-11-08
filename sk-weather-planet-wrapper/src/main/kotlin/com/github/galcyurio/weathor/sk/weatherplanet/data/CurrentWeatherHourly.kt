@@ -18,6 +18,7 @@ data class CurrentWeatherHourly(
     val common: Common,
     val result: Result
 ) {
+    val firstElement = elements[0]
 
     data class Element(
         /** 격자 정보 */

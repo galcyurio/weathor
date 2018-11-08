@@ -15,6 +15,7 @@ data class ForecastWeather3Hours(
     val common: Common,
     val result: Result
 ) {
+    val firstElement = elements[0]
 
     data class Element(
         val grid: Grid,

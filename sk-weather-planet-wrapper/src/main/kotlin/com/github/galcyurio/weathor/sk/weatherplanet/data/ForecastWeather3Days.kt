@@ -12,6 +12,7 @@ data class ForecastWeather3Days(
     val common: Common,
     val result: Result
 ) {
+    val firstElement = elements[0]
 
     @JsonDeserialize(using = Element3DaysDeserializer::class)
     data class Element(

@@ -15,11 +15,11 @@ import java.util.*
 @JsonDeserialize(using = CurrentWeatherMinutelyDeserializer::class)
 data class CurrentWeatherMinutely(
     val elements: List<Element>,
-
     val common: Common,
-
     val result: Result
 ) {
+    val firstElement = elements[0]
+
     data class Element(
         /** 강수 정보 */
         val precipitation: Precipitation,
