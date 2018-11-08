@@ -50,8 +50,8 @@ class ForecastWeather3DaysDeserializerTest {
         val actual: WindCollection = mapper.treeToValue(fcst3hourNode["wind"])
         assertThat(actual).hasNoNullFieldsOrPropertiesExcept("after67hour")
 
-        assertThat(actual.after4hour.direction).isEqualTo(248.00f)
-        assertThat(actual.after4hour.speed).isEqualTo(1.60f)
+        assertThat(actual.after4hour?.direction).isEqualTo(248.00f)
+        assertThat(actual.after4hour?.speed).isEqualTo(1.60f)
     }
 
     @Test

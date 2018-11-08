@@ -38,13 +38,13 @@ data class ForecastWeather3Hours(
         val data: Map<Int, Wind>,
 
         /** 풍향, 풍속 (발표시간+1시간) */
-        val after1hour: Wind,
+        val after1hour: Wind? = null,
 
         /** 풍향, 풍속 (발표시간+2시간) */
-        val after2hour: Wind,
+        val after2hour: Wind? = null,
 
         /** 풍향, 풍속 (발표시간+3시간) */
-        val after3hour: Wind,
+        val after3hour: Wind? = null,
 
         /** 풍향, 풍속 (발표시간+4시간) */
         val after4hour: Wind? = null

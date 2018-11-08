@@ -26,9 +26,9 @@ class WindCollection3HoursDeserializer
 
         return WindCollection(
             data = map,
-            after1hour = list[0],
-            after2hour = list[1],
-            after3hour = list[2],
+            after1hour = list.getOrNull(0),
+            after2hour = list.getOrNull(1),
+            after3hour = list.getOrNull(2),
             after4hour = list.getOrNull(3)
         )
     }
