@@ -18,15 +18,12 @@ class HumidityCollection3HoursDeserializer
             .filter { (_, rawHumidity) -> rawHumidity.isNotEmpty() }
             .map { (hour, rawHumidity) -> hour to rawHumidity.toFloat() }
             .toMap()
-
-        val list = map.values.toList()
-
         return HumidityCollection(
             data = map,
-            after1hour = list[0],
-            after2hour = list[1],
-            after3hour = list[2],
-            after4hour = list.getOrNull(3)
+            after1hour = map[1],
+            after2hour = map[2],
+            after3hour = map[3],
+            after4hour = map[4]
         )
     }
 }

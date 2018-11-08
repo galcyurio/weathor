@@ -51,14 +51,12 @@ class ForecastWeather3HoursDeserializer
                 it to Lightning.code(code)
             }
             .toMap()
-        val lightnings = map.values.toList()
-
         return LightningCollection(
             data = map,
-            after1hour = lightnings[0],
-            after2hour = lightnings[1],
-            after3hour = lightnings[2],
-            after4hour = lightnings.getOrNull(3)
+            after1hour = map[1],
+            after2hour = map[2],
+            after3hour = map[3],
+            after4hour = map[4]
         )
     }
 }

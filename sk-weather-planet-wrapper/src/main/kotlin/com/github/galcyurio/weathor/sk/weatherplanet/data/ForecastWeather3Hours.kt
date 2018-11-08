@@ -60,13 +60,13 @@ data class ForecastWeather3Hours(
         val data: Map<Int, Precipitation>,
 
         /** 강수정보 (발표시간+1시간) */
-        val after1hour: Precipitation,
+        val after1hour: Precipitation? = null,
 
         /** 강수정보 (발표시간+2시간) */
-        val after2hour: Precipitation,
+        val after2hour: Precipitation? = null,
 
         /** 강수정보 (발표시간+3시간) */
-        val after3hour: Precipitation,
+        val after3hour: Precipitation? = null,
 
         /** 강수정보 (발표시간+4시간) */
         val after4hour: Precipitation? = null
@@ -82,13 +82,13 @@ data class ForecastWeather3Hours(
         val data: Map<Int, Sky>,
 
         /** 하늘상태 (발표시간+1시간) */
-        val after1hour: Sky,
+        val after1hour: Sky? = null,
 
         /** 하늘상태 (발표시간+2시간) */
-        val after2hour: Sky,
+        val after2hour: Sky? = null,
 
         /** 하늘상태 (발표시간+3시간) */
-        val after3hour: Sky,
+        val after3hour: Sky? = null,
 
         /** 하늘상태 (발표시간+4시간) */
         val after4hour: Sky? = null
@@ -104,13 +104,13 @@ data class ForecastWeather3Hours(
         val data: Map<Int, Float>,
 
         /** 기온 (발표시간+1시간) */
-        val after1hour: Float,
+        val after1hour: Float? = null,
 
         /** 기온 (발표시간+2시간) */
-        val after2hour: Float,
+        val after2hour: Float? = null,
 
         /** 기온 (발표시간+3시간) */
-        val after3hour: Float,
+        val after3hour: Float? = null,
 
         /** 기온 (발표시간+4시간) */
         val after4hour: Float? = null
@@ -126,13 +126,13 @@ data class ForecastWeather3Hours(
         val data: Map<Int, Float>,
 
         /** 상대습도 (발표시간+1시간) */
-        val after1hour: Float,
+        val after1hour: Float? = null,
 
         /** 상대습도 (발표시간+2시간) */
-        val after2hour: Float,
+        val after2hour: Float? = null,
 
         /** 상대습도 (발표시간+3시간) */
-        val after3hour: Float,
+        val after3hour: Float? = null,
 
         /** 상대습도 (발표시간+4시간) */
         val after4hour: Float? = null
@@ -147,13 +147,13 @@ data class ForecastWeather3Hours(
         val data: Map<Int, Lightning>,
 
         /** 낙뢰 확률 (발표시간+1시간) */
-        val after1hour: Lightning,
+        val after1hour: Lightning? = null,
 
         /** 낙뢰 확률 (발표시간+2시간) */
-        val after2hour: Lightning,
+        val after2hour: Lightning? = null,
 
         /** 낙뢰 확률 (발표시간+3시간) */
-        val after3hour: Lightning,
+        val after3hour: Lightning? = null,
 
         /** 낙뢰 확률 (발표시간+4시간) */
         val after4hour: Lightning? = null

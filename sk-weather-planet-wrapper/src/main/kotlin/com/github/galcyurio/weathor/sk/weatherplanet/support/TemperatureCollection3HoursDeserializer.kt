@@ -18,14 +18,12 @@ class TemperatureCollection3HoursDeserializer
             .filter { (_, rawTemperature) -> rawTemperature.isNotEmpty() }
             .map { (hour, rawTemperature) -> hour to rawTemperature.toFloat() }
             .toMap()
-        val temperatures = map.values.toList()
-
         return TemperatureCollection(
             data = map,
-            after1hour = temperatures[0],
-            after2hour = temperatures[1],
-            after3hour = temperatures[2],
-            after4hour = temperatures.getOrNull(3)
+            after1hour = map[1],
+            after2hour = map[2],
+            after3hour = map[3],
+            after4hour = map[4]
         )
     }
 }

@@ -24,14 +24,12 @@ class PrecipitationCollection3HoursDeserializer
                 it to Precipitation(sinceOnTime, unit, type)
             }
             .toMap()
-        val precipitations = map.values.toList()
-
         return PrecipitationCollection(
             data = map,
-            after1hour = precipitations[0],
-            after2hour = precipitations[1],
-            after3hour = precipitations[2],
-            after4hour = precipitations.getOrNull(3)
+            after1hour = map[1],
+            after2hour = map[2],
+            after3hour = map[3],
+            after4hour = map[4]
         )
     }
 }

@@ -22,14 +22,12 @@ class WindCollection3HoursDeserializer
                 it to Wind(direction, speed)
             }
             .toMap()
-        val list = map.values.toList()
-
         return WindCollection(
             data = map,
-            after1hour = list.getOrNull(0),
-            after2hour = list.getOrNull(1),
-            after3hour = list.getOrNull(2),
-            after4hour = list.getOrNull(3)
+            after1hour = map[1],
+            after2hour = map[2],
+            after3hour = map[3],
+            after4hour = map[4]
         )
     }
 }
