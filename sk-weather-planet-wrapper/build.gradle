@@ -1,3 +1,4 @@
+apply plugin: 'com.novoda.bintray-release'
 apply from: '../gradle/tasks.gradle'
 
 dependencies {
@@ -8,4 +9,13 @@ dependencies {
     compile project(':weathor-commons')
 
     testImplementation deps.okhttpMockWebServer
+}
+
+publish {
+    userOrg = config.user
+    groupId = config.group
+    artifactId = project.name
+    publishVersion = config.version
+    desc = "SK텔레콤 Weather Planet API wrapper 라이브러리"
+    website = config.website
 }
