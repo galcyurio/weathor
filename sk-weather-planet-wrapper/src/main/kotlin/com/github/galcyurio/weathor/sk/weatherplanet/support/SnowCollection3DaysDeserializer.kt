@@ -14,8 +14,10 @@ class SnowCollection3DaysDeserializer : StdDeserializer<SnowCollection>(SnowColl
     override fun deserialize(p: JsonParser, ctxt: DeserializationContext): SnowCollection {
         val node = p.codec.readTree<JsonNode>(p)
         val map = (6..66 step 6)
-            .map {
+            .mapNotNull {
                 val raw = node["snow${it}hour"].textValue()
+                if (raw.isEmpty()) return@mapNotNull null
+
                 val snow = when (raw) {
                     "없음" -> ForecastWeather3Days.Snow.NONE
                     "1cm미만" -> ForecastWeather3Days.Snow.UNDER_1_CM

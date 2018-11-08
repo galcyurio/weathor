@@ -14,8 +14,10 @@ class RainCollection3DaysDeserializer : StdDeserializer<RainCollection>(RainColl
     override fun deserialize(p: JsonParser, ctxt: DeserializationContext): RainCollection {
         val node = p.codec.readTree<JsonNode>(p)
         val map = (6..66 step 6)
-            .map {
+            .mapNotNull {
                 val raw = node["rain${it}hour"].textValue()
+                if (raw.isEmpty()) return@mapNotNull null
+
                 val rain = when (raw) {
                     "없음" -> NONE
                     "1mm미만" -> UNDER_1_MM
@@ -25,7 +27,7 @@ class RainCollection3DaysDeserializer : StdDeserializer<RainCollection>(RainColl
                     "20~39mm" -> BETWEEN_20_39_MM
                     "40~69mm" -> BETWEEN_40_69_MM
                     "70mm이상" -> MORE_THAN_70_MM
-                    else -> throw IllegalArgumentException("wrong rain string")
+                    else -> throw IllegalArgumentException("wrong rain string : $raw")
                 }
                 it to rain
             }
