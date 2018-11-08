@@ -20,6 +20,7 @@ class SkWeatherPlanetClientTest {
     private val currentWeatherMinutelyJson = readJson("mock/current-weather-minutely.json")
     private val currentWeatherHourlyJson = readJson("mock/current-weather-hourly.json")
     private val forecastWeather3HoursJson = readJson("mock/forecast-3hours.json")
+    private val forecastWeahter3DaysJson = readJson("mock/forecast-3days.json")
 
     @Before
     fun setUp() {
@@ -73,6 +74,18 @@ class SkWeatherPlanetClientTest {
         val actual = arrayOf(
             client.forecast3Hours("", "", "").execute().body(),
             client.forecast3Hours(1.0, 1.0).execute().body())
+
+        assertThat(actual).doesNotContainNull()
+    }
+
+    @Test
+    fun `forecast3Days 호출`() {
+        response.setBody(forecastWeahter3DaysJson)
+        (1..2).forEach { server.enqueue(response) }
+
+        val actual = arrayOf(
+            client.forecast3Days("", "", "").execute().body(),
+            client.forecast3Days(1.0, 1.0).execute().body())
 
         assertThat(actual).doesNotContainNull()
     }
