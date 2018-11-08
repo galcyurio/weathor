@@ -18,6 +18,7 @@ class SkWeatherPlanetClientTest {
 
     private val readJson: (String) -> String = { javaClass.classLoader.getResource(it).readText() }
     private val currentWeatherMinutelyJson = readJson("mock/current-weather-minutely.json")
+    private val currentWeatherHourlyJson = readJson("mock/current-weather-hourly.json")
 
     @Before
     fun setUp() {
@@ -50,5 +51,16 @@ class SkWeatherPlanetClientTest {
         val actual3 = client.currentMinutely(1).execute().body()
 
         assertThat(arrayOf(actual1, actual2, actual3)).doesNotContainNull()
+    }
+
+    @Test
+    fun `currentHourly 호출`() {
+        response.setBody(currentWeatherHourlyJson)
+        (1..2).forEach { server.enqueue(response) }
+
+        val actual1 = client.currentHourly("", "", "").execute().body()
+        val actual2 = client.currentHourly(1.0, 1.0).execute().body()
+
+        assertThat(arrayOf(actual1, actual2)).doesNotContainNull()
     }
 }
