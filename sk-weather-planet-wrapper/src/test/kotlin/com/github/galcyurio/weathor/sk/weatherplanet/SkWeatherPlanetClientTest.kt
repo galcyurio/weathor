@@ -43,7 +43,7 @@ class SkWeatherPlanetClientTest {
     @Test
     fun `currentMinutely 호출`() {
         response.setBody(currentWeatherMinutelyJson)
-        server.enqueue(response)
+        (1..3).forEach { server.enqueue(response) }
 
         val actual1 = client.currentMinutely(1.0, 1.0).execute().body()
         val actual2 = client.currentMinutely("", "", "").execute().body()
