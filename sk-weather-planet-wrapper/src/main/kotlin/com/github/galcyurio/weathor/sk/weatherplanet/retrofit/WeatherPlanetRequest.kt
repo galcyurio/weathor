@@ -20,7 +20,7 @@ interface WeatherPlanetRequest {
     @GET("current/minutely")
     fun currentMinutely(
         @Query("city") city: String,
-        @Query("country") country: String,
+        @Query("county") county: String,
         @Query("village") village: String,
         @Query("version") version: Int = SkWeatherPlanetClient.API_VERSION
     ): Call<CurrentWeatherMinutely>
