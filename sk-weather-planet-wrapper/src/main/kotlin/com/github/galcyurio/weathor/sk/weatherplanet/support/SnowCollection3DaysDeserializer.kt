@@ -28,20 +28,19 @@ class SnowCollection3DaysDeserializer : StdDeserializer<SnowCollection>(SnowColl
                 it to snow
             }
             .toMap()
-        val list = map.values.toList()
         return SnowCollection(
             data = map,
-            after6hour = list[0],
-            after12hour = list[1],
-            after18hour = list[2],
-            after24hour = list[3],
-            after30hour = list[4],
-            after36hour = list[5],
-            after42hour = list[6],
-            after48hour = list[7],
-            after54hour = list[8],
-            after60hour = list[9],
-            after66hour = list[10]
+            after6hour = map[6],
+            after12hour = map[12],
+            after18hour = map[18],
+            after24hour = map[24],
+            after30hour = map[30],
+            after36hour = map[36],
+            after42hour = map[42],
+            after48hour = map[48],
+            after54hour = map[54],
+            after60hour = map[60],
+            after66hour = map[66]
         )
     }
 }

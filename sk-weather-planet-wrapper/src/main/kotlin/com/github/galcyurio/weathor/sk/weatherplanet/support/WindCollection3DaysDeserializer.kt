@@ -20,31 +20,30 @@ class WindCollection3DaysDeserializer : StdDeserializer<WindCollection>(WindColl
                 it to Wind(direction, speed)
             }
             .toMap()
-        val winds = map.values.toList()
         return WindCollection(
             data = map,
-            after4hour = winds.getOrNull(0),
-            after7hour = winds.getOrNull(1),
-            after10hour = winds.getOrNull(2),
-            after13hour = winds.getOrNull(3),
-            after16hour = winds.getOrNull(4),
-            after19hour = winds.getOrNull(5),
-            after22hour = winds.getOrNull(6),
-            after25hour = winds.getOrNull(7),
-            after28hour = winds.getOrNull(8),
-            after31hour = winds.getOrNull(9),
-            after34hour = winds.getOrNull(10),
-            after37hour = winds.getOrNull(11),
-            after40hour = winds.getOrNull(12),
-            after43hour = winds.getOrNull(13),
-            after46hour = winds.getOrNull(14),
-            after49hour = winds.getOrNull(15),
-            after52hour = winds.getOrNull(16),
-            after55hour = winds.getOrNull(17),
-            after58hour = winds.getOrNull(18),
-            after61hour = winds.getOrNull(19),
-            after64hour = winds.getOrNull(20),
-            after67hour = winds.getOrNull(21)
+            after4hour = map[4],
+            after7hour = map[7],
+            after10hour = map[10],
+            after13hour = map[13],
+            after16hour = map[16],
+            after19hour = map[19],
+            after22hour = map[22],
+            after25hour = map[25],
+            after28hour = map[28],
+            after31hour = map[31],
+            after34hour = map[34],
+            after37hour = map[37],
+            after40hour = map[40],
+            after43hour = map[43],
+            after46hour = map[46],
+            after49hour = map[49],
+            after52hour = map[52],
+            after55hour = map[55],
+            after58hour = map[58],
+            after61hour = map[61],
+            after64hour = map[64],
+            after67hour = map[67]
         )
     }
 }

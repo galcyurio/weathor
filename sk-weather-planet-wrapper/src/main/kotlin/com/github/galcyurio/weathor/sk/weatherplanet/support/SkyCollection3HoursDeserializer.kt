@@ -19,14 +19,12 @@ class SkyCollection3HoursDeserializer
             .filterNot { (_, code) -> code.isNullOrEmpty() }
             .map { (hour, code) -> hour to Sky.valueOf(code) }
             .toMap()
-        val list = map.values.toList()
-
         return SkyCollection(
             data = map,
-            after1hour = list[0],
-            after2hour = list[1],
-            after3hour = list[2],
-            after4hour = list.getOrNull(3)
+            after1hour = map[1],
+            after2hour = map[2],
+            after3hour = map[3],
+            after4hour = map[4]
         )
     }
 }
