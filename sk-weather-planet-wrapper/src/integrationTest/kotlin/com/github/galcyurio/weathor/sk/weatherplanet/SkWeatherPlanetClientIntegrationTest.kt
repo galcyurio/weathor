@@ -8,7 +8,7 @@ import java.util.*
 /**
  * @author galcyurio
  */
-class SkWeatherPlanetClientTest {
+class SkWeatherPlanetClientIntegrationTest {
 
     private val apiKey: String
     private val latitude = 36.1234
