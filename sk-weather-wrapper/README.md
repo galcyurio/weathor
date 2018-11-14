@@ -1,4 +1,9 @@
-# sk-weather-wrapper
+# [Deprecated] sk-weather-wrapper
+SK텔레콤의 weather API 지원 종료에 따라 해당 라이브러리도 지원이 중단됩니다.
+https://developers.sktelecom.com/community/notify/view/?ntcStcId=20171114170854 
+
+*** 
+
 SK텔레콤의 Weather API 서비스의 wrapper 라이브러리입니다.  
 https://developers.sktelecom.com/content/sktApi/view/?svcId=10073
 

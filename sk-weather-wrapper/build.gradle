@@ -1,4 +1,4 @@
-apply plugin: 'com.novoda.bintray-release'
+// apply plugin: 'com.novoda.bintray-release'
 apply from: '../gradle/tasks.gradle'
 
 dependencies {
@@ -11,6 +11,7 @@ dependencies {
     testImplementation deps.okhttpMockWebServer
 }
 
+/*
 publish {
     userOrg = config.user
     groupId = config.group
@@ -19,3 +20,4 @@ publish {
     desc = "SK텔레콤 Weather API wrapper 라이브러리"
     website = config.website
 }
+*/
