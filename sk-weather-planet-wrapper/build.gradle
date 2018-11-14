@@ -6,7 +6,6 @@ dependencies {
     compile deps.retrofit
     implementation deps.retrofitJacksonConverter
     implementation deps.jacksonModuleKotlin
-    compile project(':weathor-commons')
 
     testImplementation deps.okhttpMockWebServer
 }
