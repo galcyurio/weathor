@@ -1,15 +1,14 @@
 buildscript {
     ext.config = [
             group  : "com.github.galcyurio.weathor",
-            version: "0.1.0",
+            version: "0.1.1",
             user   : "galcyurio",
             website: "https://github.com/galcyurio/weathor"
     ]
 
     ext.versions = [
             kotlin        : "1.2.40",
-            testSets      : "1.4.5",
-            bintrayRelease: "0.8.1",
+            bintrayRelease: "0.9",
 
             jackson       : "2.9.5",
             okhttp        : "3.10.0",
@@ -41,7 +40,6 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
-        classpath "org.unbroken-dome.gradle-plugins:gradle-testsets-plugin:${versions.testSets}"
         classpath "com.novoda:bintray-release:${versions.bintrayRelease}"
     }
 }
@@ -53,8 +51,6 @@ allprojects {
 
 subprojects {
     apply plugin: 'kotlin'
-    apply plugin: 'org.unbroken-dome.test-sets'
-    apply plugin: 'idea'
 
     repositories {
         jcenter()
@@ -65,23 +61,6 @@ subprojects {
         testImplementation deps.junit
         testImplementation deps.assertj
     }
-
-    testSets {
-        integrationTest
-    }
-
-    idea {
-        module {
-            testSourceDirs += file("src/integrationTest/kotlin")
-            testSourceDirs += file("src/integrationTest/java")
-        }
-    }
-
-    compileIntegrationTestJava.options.encoding = "UTF-8"
-    integrationTest { outputs.upToDateWhen { false } }
-
-    check.dependsOn integrationTest
-    integrationTest.mustRunAfter test
 
     compileKotlin {
         kotlinOptions.jvmTarget = "1.6"
