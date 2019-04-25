@@ -1,7 +1,7 @@
 # Weathor
 
 ## sk-weather-planet-wrapper 
-[![Download](https://api.bintray.com/packages/galcyurio/maven/sk-weather-planet-wrapper/images/download.svg?version=0.1.0) ](https://bintray.com/galcyurio/maven/sk-weather-planet-wrapper/0.1.0/link)
+[ ![Download](https://api.bintray.com/packages/galcyurio/maven/sk-weather-planet-wrapper/images/download.svg) ](https://bintray.com/galcyurio/maven/sk-weather-planet-wrapper/_latestVersion)
 - [sk-weather-planet-wrapper 라이브러리 가이드 문서 바로가기](sk-weather-planet-wrapper/README.md)
 - [SK Weather Planet API 공식 문서 바로가기](https://developers.sktelecom.com/content/sktApi/view/?svcId=10113)
 
