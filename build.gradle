@@ -8,7 +8,7 @@ buildscript {
 
     ext.versions = [
             kotlin        : "1.2.40",
-            bintrayRelease: "0.8.1",
+            bintrayRelease: "0.9",
 
             jackson       : "2.9.5",
             okhttp        : "3.10.0",
