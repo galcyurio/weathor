@@ -1,9 +1,10 @@
 apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'java-library'
 //apply from: '../gradle/tasks.gradle'
 
 dependencies {
     implementation deps.kotlinStdLib
-    compile deps.retrofit
+    api deps.retrofit
     implementation deps.retrofitJacksonConverter
     implementation deps.jacksonModuleKotlin
 
