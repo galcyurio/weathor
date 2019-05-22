@@ -69,3 +69,9 @@ subprojects {
         kotlinOptions.jvmTarget = "1.8"
     }
 }
+
+configure([
+        project(':sk-weather-planet-wrapper')
+]) {
+    apply from: "$rootProject.projectDir.path/gradle/integration-test.gradle"
+}
