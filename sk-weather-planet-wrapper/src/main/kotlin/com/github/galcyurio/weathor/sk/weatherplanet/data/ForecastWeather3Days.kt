@@ -6,6 +6,10 @@ import com.github.galcyurio.weathor.sk.weatherplanet.data.part.*
 import com.github.galcyurio.weathor.sk.weatherplanet.support.*
 import java.util.*
 
+/**
+ * 3시간 간격으로 매일 8회(2, 5, 8, 11, 14, 17, 20, 23시) 5Km 격자 단위로 단기예보 정보.
+ * 예보시간은 발표시간+4시간부터 최대 67시간(3일)까지이다.
+ */
 @JsonDeserialize(using = ForecastWeather3DaysDeserializer::class)
 data class ForecastWeather3Days(
     val elements: List<Element>,
