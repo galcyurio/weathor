@@ -1,5 +1,6 @@
 package com.github.galcyurio.weathor.sk.weatherplanet.support
 
+import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
@@ -15,6 +16,7 @@ import java.util.*
 internal object Injector {
     fun provideObjectMapper(): ObjectMapper {
         return ObjectMapper()
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
             .registerKotlinModule()
             .registerModule(SimpleModule()
                 .addDeserializer(Date::class.java, SkTimeDeserializer()))
