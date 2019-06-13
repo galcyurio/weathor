@@ -37,8 +37,8 @@ internal object Injector {
     fun provideRetrofit(
         apiKey: String,
         baseUrl: String = SkWeatherPlanetClient.WEATHER_PLANET_BASE_URL,
-        objectMapper: ObjectMapper = Injector.provideObjectMapper(),
-        okHttpClient: OkHttpClient = Injector.provideOkHttpClient(apiKey)
+        objectMapper: ObjectMapper = provideObjectMapper(),
+        okHttpClient: OkHttpClient = provideOkHttpClient(apiKey)
     ): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(JacksonConverterFactory.create(objectMapper))
